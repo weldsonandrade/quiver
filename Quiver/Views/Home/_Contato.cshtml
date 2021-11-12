@@ -1,0 +1,50 @@
+﻿@model Quiver.Models.Mailer.EmailContato
+
+
+    @using (Ajax.BeginForm("Contato", "Home", null, new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "onContatoSuccess(data)", OnFailure = "onContatoFailure(data)" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+            <div class="form-group row">
+                <p class=" text-muted col-md-2">Nome</p>
+                <div class="col-md-8 col-xs-10">
+                    @Html.TextBoxFor(m => @Model.Nome, new { @class = "form-control", @id = "nome", @onkeyup = "validarNomeContato()", @onfocusOut = "validarNomeContato()" })
+                </div>
+                <div id="mensagem-erro-nome" style="display:none" class="col-md-1 col-xs-2"><small class="help-block msg-validar"><i class="zmdi zmdi-hc-2x" id="icon-nome"></i></small></div>
+
+            </div>
+
+
+            <div class="form-group row">
+                <p class=" text-muted col-md-2">Email</p>
+                <div class="col-md-8 col-xs-10">
+                    @Html.TextBoxFor(m => @Model.Email, new { @class = "form-control", @id = "email", @onkeyup = "validarEmailContato()", @onfocusOut = "validarEmailContato()" })
+                </div>
+                <div id="mensagem-erro-email" style="display:none" class="col-xs-1 col-xs-2"><small class="help-block msg-validar"><i class="zmdi zmdi-hc-2x" id="icon-email"></i></small></div>
+
+            </div>
+
+            <div class=" form-group row">
+                <p class=" text-muted col-md-2">Mensagem</p>
+                <div class="col-md-8 col-xs-10">
+                    @Html.TextAreaFor(m => @Model.Mensagem, new { @class = "form-control", placeholder = "Sua mensagem*", id = "msg", @onkeyup = "validarTextoContato()", @onfocusOut = "validarTextoContato()" })
+                </div>
+                <div id="mensagem-erro-msg" style="display:none" class="col-md-1 col-xs-2"><small class="help-block msg-validar"><i class="zmdi zmdi-hc-2x" id="icon-mensagem"></i></small></div>
+
+
+            </div>
+
+            <div class="form-group row" style="margin-top:20px">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-default btn-xl" id="btnEnviarEmail" onclick="limparCampos()" disabled>Enviar mensagem</button>
+                </div>
+            </div>
+
+
+    }
+
+
+
+
+

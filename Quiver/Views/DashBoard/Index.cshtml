@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "Quiver";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content-header">
+    <div class="row">
+        <div class="col-xs-8 animated fadeIn">
+            <h1 class="titulo-opcao">
+                <i class="zmdi zmdi-apps"></i> Dashboard
+            </h1>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="content row" id="dashboard" style="visibility:hidden">
+    <!--Modal de editar avaliacoes-->
+    <div id="modal"> @Html.Partial("~/Views/Agenda/_Manipular.cshtml")</div>
+
+    <!-- Sumário com informações -->
+    <section id="informativo-inicial">
+        @*@Html.Partial("_InformacoesGerais", new Quiver.Models.quantitativoAvaliacoesDashboard())*@
+
+        <div class="row linha-margin-0 m-b-10">
+
+            <div class="block-header col-lg-12  m-b-10">
+                <h2>
+                    Informativo sobre as inspeções.
+                    <button class=" help" data-toggle="modal" data-target="#modalHelpAvaliacoes">?</button>
+
+                </h2>
+            </div>
+
+            <div class="col-md-12 col-xs-12 col-lg-4 m-b-5 text-right">
+                <div class="dados-avaliacoes  dados-verde z-depth-1 p-t-5 p-b-5">
+                    <small>Inspeções finalizadas</small>
+                    <h1 class="m-0 f-400" id="avaliacoes-finalizadas"> <i class="zmdi zmdi zmdi-refresh zmdi-hc-spin"></i> </h1>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-xs-12 col-lg-4 m-b-5 text-right">
+                <div class="dados-avaliacoes dados-azul  z-depth-1 p-t-5 p-b-5">
+                    <small>Inspeções em andamento</small>
+                    <h1 class="m-0 f-400" id="avaliacoes-andamentos"> <i class="zmdi zmdi zmdi-refresh zmdi-hc-spin"></i></h1>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-xs-12 col-lg-4 m-b-5 text-right">
+                <div class="dados-avaliacoes  dados-vermelho z-depth-1 p-t-5 p-b-5">
+                    <small>Inspeções atrasadas</small>
+                    <h1 class="m-0 f-400" id="avaliacoes-atrasadas"><i class="zmdi zmdi zmdi-refresh zmdi-hc-spin"></i></h1>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row linha-margin-0 m-b-20">
+            <div class="block-header col-lg-12  m-b-10">
+                <h2>
+                    Informativo sobre as inspeções finalizadas.
+                    <button class=" help" data-toggle="modal" data-target="#modalHelpAvaliacoesFinalizadas">?</button>
+                </h2>
+            </div>
+            <div class="col-md-6 col-xs-6 col-lg-3 m-b-5 text-right">
+                <div class="dados-avaliacoes  dados-laranja z-depth-1 p-t-5 p-b-5">
+                    <small>Finalizadas Agendadas</small>
+                    <h3 class="m-0 f-400" id="avaliacoes-agendadas"><i class="zmdi zmdi zmdi-refresh zmdi-hc-spin"></i></h3>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xs-6 col-lg-3 m-b-5 text-right">
+                <div class="dados-avaliacoes  dados-purpura z-depth-1 p-t-5 p-b-5">
+                    <small>Finalizadas Não Agendadas</small>
+                    <h3 class="m-0 f-400" id="avaliacoes-nao-agendadas"><i class="zmdi zmdi zmdi-refresh zmdi-hc-spin"></i> </h3>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-xs-6 col-lg-3 m-b-5 text-right">
+                <div class="dados-avaliacoes dados-indigo z-depth-1 p-t-5 p-b-5">
+                    <small>Finalizadas Conformes</small>
+                    <h3 class="m-0 f-400" id="avaliacoes-conformes"> <i class="zmdi zmdi zmdi-refresh zmdi-hc-spin"></i> </h3>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xs-6 col-lg-3 m-b-5 text-right">
+                <div class="dados-avaliacoes dados-rosa z-depth-1 p-t-5 p-b-5">
+                    <small>Finalizadas Não Conformes</small>
+                    <h3 class="m-0 f-400" id="avaliacoes-nao-conformes"><i class="zmdi zmdi zmdi-refresh zmdi-hc-spin"></i></h3>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- GRAFICO e AGENDA -->
+    <section id="informativo-geral">
+        <div class="block-header col-lg-12  m-b-10">
+            <h2>Informativos gerais sobre agendamentos, rankings, histórico e etc...</h2>
+        </div>
+        <div class="col-lg-6">
+            <div class="card" >
+                <div class="card-header p-t-10 p-b-10">
+                    <h2>Inspeções finalizadas <small class="m-0">Gráfico quantitativo de inspeções finalizadas</small></h2>
+                    <ul class="actions" id="card-calendar">
+                        <a href="@Url.Action("EvolutivoGeral", "Relatorio")" class="btn btn-xs btn-primary" style="border-radius: 0;">
+                            Gerar gráficos
+                        </a>
+                    </ul>
+                </div>
+                <div class="card-body m-10">
+                    <div id="line-chart-quantitativo" class="flot-chart m-b-20" style="min-height:430px; max-width:100%">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6">
+            <div class="card" id="agenda-dashboard">
+                <div class="card-header p-t-10 p-b-10" style="background:#4285F4 !important">
+                    <h2 class="c-white">Agenda de inspeções</h2>
+                    <ul class="actions" id="card-calendar">
+                        <a href="@Url.Action("Index", "Agenda")" class="btn btn-xs btn-default" style="border-radius: 0;">Editar</a>
+                    </ul>
+                </div>
+                <div class="card-body"> <div id='calendar'></div></div>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="row"></div>
+    <div class="">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header  p-10">
+                    <h2>Ranking de efetividade dos Usuários <small class="m-0">Top 5 de usuários com inspeções mais efetivas.</small></h2>
+                    <ul class="actions" id="card-calendar">
+                        <a href="@Url.Action("RankingGeral", "Relatorio")" class="btn btn-xs btn-primary" style="border-radius: 0;">Gerar rankings</a>
+                    </ul>
+                </div>
+
+                <div class="card-body" id="ranking-efetividade-usuarios">
+                    @Html.Partial("_RankingUsuarios", new List<Quiver.Models.RankingGeralVM>())
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header  p-10">
+                    <h2>Ranking quantitativo de Usuários <small class="m-0">Top 5 de usuários que mais finalizaram inspeções</small></h2>
+                    <ul class="actions" id="card-calendar">
+                        <a href="@Url.Action("RankingGeral", "Relatorio")" class="btn btn-xs btn-primary" style="border-radius: 0;">
+                            Gerar rankings
+                        </a>
+                    </ul>
+                </div>
+
+                <div class="card-body" id="ranking-quantitativo-usuarios">
+                    @Html.Partial("_RankingUsuarios", new List<Quiver.Models.RankingGeralVM>())
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+    <div class="row"></div>
+
+
+
+    <div id="lista-atrasadas">
+        <div class="card">
+            <div class="card-header p-10" style="background:#dc3c31  !important">
+                <h2 class="c-white">Lista de inspeções atrasadas</h2>
+            </div>
+            <div class="card-body" id="lista-avaliacoes-atrasadas">
+                @Html.Partial("_TabelaAvaliacoesTipo", new List<Quiver.Models.AvaliacaoVM>())
+            </div>
+        </div>
+
+    </div>
+    <div id="lista-andamentos">
+        <div class="card">
+            <div class="card-header  p-10" style="background:#4285F4 !important">
+                <h2 class="c-white">Lista de inspeções em andamento</h2>
+            </div>
+            <div class="card-body" id="lista-avaliacoes-andamentos">
+                @Html.Partial("_TabelaAvaliacoesTipo", new List<Quiver.Models.AvaliacaoVM>())
+            </div>
+        </div>
+    </div>
+</section>
+
+@Html.Partial("_HelpInspecoes")
+
+@Html.Partial("_HelpInspecoesFinalizadas")
+
+
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/Custom/agenda.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/agendaValidacoes.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/dashboard.js"></script>
+}

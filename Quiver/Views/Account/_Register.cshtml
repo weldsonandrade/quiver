@@ -1,0 +1,67 @@
+﻿@using Quiver.Models
+@model RegisterViewModel
+
+<div class="lc-block toggled" id="l-register">
+    <div class="login-card-header">
+        <img src="../Content/img/quiver_logo.png" />  <h4>Quiveer</h4>
+    </div>
+
+    @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <h3>Crie sua conta</h3>
+        <div class="form-group fg-float col-md-12 " id="usuario-erro">
+            <small class="help-block" id="mensagem-erro"></small>
+            @Html.ValidationSummary(true)
+        </div>
+
+        @* Email *@
+        <div class="input-group m-b-20" id="usuario-email">
+            <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+            <div class="fg-line">
+                @Html.TextBoxFor(m => m.Email, new { placeholder = "E-mail", @class = "input form-control fg-input", onkeyup = "validarEmailUsuario()" })
+            </div>
+        </div>
+        @Html.ValidationMessageFor(m => m.Email)
+
+        @* Nome *@
+        <div class="input-group m-b-20" id="usuario-nome">
+            <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+            <div class="fg-line">
+                @Html.TextBoxFor(m => m.Nome, new { placeholder = "Nome", @class = "input form-control fg-input", @autocomplete = "off" })
+            </div>            
+        </div>
+        @Html.ValidationMessageFor(m => m.Nome)
+
+        @* Telefone *@
+        @*<div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-phone"></i></span>
+                <div class="fg-line">
+                    @Html.TextBoxFor(m => m.Telefone, new { placeholder = "Telefone", @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.Telefone)
+            </div>*@
+
+        @* Senha *@
+        <div class="input-group m-b-20" id="usuario-senha">
+            <span class="input-group-addon"><i class="zmdi zmdi-key"></i></span>
+            <div class="fg-line">
+                @Html.PasswordFor(m => m.Password, new { placeholder = "Senha", @class = "input form-control fg-input", @autocomplete = "off", onkeyup = "validarSenhaUsuario()" })
+            </div>            
+        </div>
+        @Html.ValidationMessageFor(m => m.Password)
+
+        @* Confirmar Senha *@
+        <div class="input-group m-b-20" id="usuario-confirmar-senha">
+            <span class="input-group-addon"><i class="zmdi zmdi-key"></i></span>
+            <div class="fg-line">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirmar senha", @class = "form-control" })
+            </div>           
+        </div>
+        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+        <small class="help-block" id="mensagem-erro-confirmar-senha"></small>
+
+        <button type="submit" class="btn btn-login btn-primary btn-float waves-effect waves-circle "><i class="zmdi zmdi-check"></i></button>
+    }
+</div>

@@ -1,0 +1,31 @@
+﻿@{
+   
+    ViewBag.Title = "Formulários - Quiver";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="row">
+        <div class="col-xs-8 ">
+            <h1 class="titulo-opcao">
+                <i class="zmdi zmdi-assignment-o"></i> Controle dos Formulários
+            </h1>
+        </div>
+        <div class="col-xs-4 text-right ">
+            <ol class="breadcrumb" style="border-bottom:none;margin-bottom:0;padding:20px 20px 20px 0px;">
+               @* <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li> *@
+                <li>@Html.ActionLink("Lista de Formulários", "Index", "Questionario")</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="content" onload="selecionarMenu()">
+    <div id="modal"></div>
+    @Html.Partial("_Card")
+</section>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/Custom/formulario/questionario.js"></script>
+}
+

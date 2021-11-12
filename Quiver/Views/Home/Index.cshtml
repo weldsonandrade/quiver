@@ -1,0 +1,460 @@
+﻿@using Quiver.Models.Mailer
+
+@{
+    ViewBag.Title = "Quiveer - Gestão de inspeções via web ou smartphone";
+}
+
+<!-- Navigation -->
+<nav id="nav-bar" class="navbar navbar-default navbar-fixed-top animated slideInDown">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="@Url.Action("Index", "Home")" style="display: -webkit-inline-box;" class="navbar-brand page-scroll">
+                <img src="~/Content/img/quiver_logo.png" id="menu-logo" /> <h1 id="icon-texto">Quiveer</h1>
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    @Html.Partial("_LoginPartial")
+                </li>
+
+                <li>
+                    <a class="page-scroll" href="#fazemos">O que fazemos?</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#funcionalidades">Funcionalidades</a>
+                </li>
+
+
+                <li>
+                    <a class="page-scroll" href="#vantagens">Vantagens</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">Contato</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<section id="video-landing">
+
+    <div class="intro-text">
+        <div class="intro-lead-in animated slideInDown">
+            Gerencie, avalie e meça tudo que acontece na sua empresa mantendo os processos e atividades nos níveis de qualidade desejados.
+        </div>
+
+        <a target="_blank" href='https://play.google.com/store/apps/details?id=com.hw.quiver&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+            <img alt='Disponível no Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/pt-br_badge_web_generic.png' style="max-height:90px" />
+        </a>
+
+    </div>
+
+    <div class="arrow" id="arrow"><a href="#fazemos" class="btn btn-link page-scroll"><i class="zmdi zmdi-chevron-down zmdi-hc-4x animated infinite pulse "></i></a></div>
+
+
+    <video autoplay="autoplay" loop="loop" id="bgvid">
+        <source src="http://taxify.co/wp-content/uploads/2014/06/file.mp4" type="video/mp4" />
+    </video>
+
+</section>
+
+
+<section id="fazemos" class="fazemos">
+    <div class="container" style="padding-top:30px;padding-bottom:60px">
+
+        <div class="col-xs-12 text-center">
+
+            <h2 class="lead">
+                Agende <strong class="c-blue"> inspeções</strong>  ou <strong class="c-blue"> checklists</strong>  para que seus colaboradores as executem diretamente em seus <strong class="c-blue"> smartphones</strong> .
+
+            </h2>
+        </div>
+
+
+        <img src="~/Content/img/hotSite/mokupQuiver.png" class="img-center" />
+    </div>
+
+    <div id="func-destaques">
+
+        <div class="row m-r-0 m-l-0">
+            <h2>Como funciona?</h2>
+
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <span class="number">1</span>
+
+                <img src="~/Content/img/hotSite/calendar.png" />
+                <h3>Agende inspeções</h3>
+                <p>
+                    Na plataforma web o gestor cria a inspeção com o local (unidade), o inspetor (colaborador),
+                    o grupo (conjunto de formulários) e a data de execução.
+                </p>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <span class="number">2</span>
+
+                <img src="~/Content/img/hotSite/check.png" />
+                <h3>Repasse aos colaboradores</h3>
+                <p>
+                    O colaborador recebe em seu smartphone as inspeções agendadas para si. Sua missão
+                    é executar (mesmo offline) essas inspeções, anexando fotos, assinaturas e qualquer informação
+                    extra necessária.
+                </p>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <span class="number">3</span>
+
+
+                <img src="~/Content/img/hotSite/list.png" />
+                <h3>Analise os resultados</h3>
+                <p>
+                    Pronto, agora basta analisar os gráficos e relatórios com todos os detalhes
+                    das inspeções finalizadas como a pontuação, o nível de qualidade, itens que estão fora da
+                    normalidade e muito mais.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<section id="funcionalidades">
+
+    <div class="row">
+
+        <div class="col-lg-6 col-md-12 " id="funcionalidades-texto">
+            <h2>
+                Execute <strong class="c-blue"> inspeções</strong> em tempo real e mantenha sua <strong class="c-blue">equipe</strong> e <strong class="c-blue">processo</strong> em perfeita harmonia.
+            </h2>
+
+            <ul>
+                <li><i class="zmdi zmdi-check"></i> Adicione fotos aos itens.</li>
+                <li><i class="zmdi zmdi-check"></i> Crie planos de ação para itens não conformes.</li>
+                <li><i class="zmdi zmdi-check"></i> Insira assinaturas do responsável.</li>
+                <li><i class="zmdi zmdi-check"></i> Marque o local da inspeção.</li>
+                <li><i class="zmdi zmdi-check"></i> Crie formulários customizados.</li>
+                <li><i class="zmdi zmdi-check"></i> Receba notificações no email e na aplicação web</li>
+                <li><i class="zmdi zmdi-check"></i> Visualize o perfil detalhado de cada membro da equipe. </li>
+                <li><i class="zmdi zmdi-check"></i> Gere rankings e gráficos por quantidade e eficiência das inspeções.</li>
+            </ul>
+
+            <!-- Button modal fullscreen -->
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-fullscreen">
+                Veja mais
+            </button>
+
+        </div>
+
+        <div class="col-lg-6 col-md-12" id="funcionalidades-background">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="treinamento" class="fazemos">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Queremos sua empresa no <strong class="c-blue">topo </strong>e lhe <strong class="c-blue">atender</strong> bem é essencial no <strong class="c-blue">processo</strong>.</h2>
+            <p>Através do nosso processo de pós-venda, tenha direito a treinamentos gratuitos. Sejam eles presenciais, por email, hangout, telefone ou até mesmo um simples whatsapp.<p />
+        </div>
+        <div class="col-md-6">
+            <figure>
+                <img src="~/Content/img/hotSite/phone1.png" class="phone1 visible" alt="phones">
+                <img src="~/Content/img/hotSite/phone2.png" class="phone2 visible" alt="phones">
+                <img src="~/Content/img/hotSite/phone3.png" class="phone3 visible" alt="phones">
+                <img src="~/Content/img/hotSite/phone1.png" class="phone4 visible" alt="phones">
+                <img src="~/Content/img/hotSite/phone2.png" class="phone5 visible" alt="phones">
+                <img src="~/Content/img/hotSite/phone3.png" class="phone6 visible" alt="phones">
+            </figure>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section id="vantagens">
+    <div class="row">
+
+        <div class="col-lg-6 hidden-md hidden-sm hidden-xs" id="vantagens-background">
+            <img src="~/Content/img/hotSite/placeit.png" style="max-width:100%" id="vantagens-img" />
+        </div>
+
+        <div class="col-lg-6  " id="vantagens-texto">
+            <h2>
+                Algumas das <strong class="c-blue">situações</strong> onde <strong class="c-blue">Quiveer</strong> irá resolver problemas.
+            </h2>
+
+            <ul>
+                <li><i class="zmdi zmdi-check"></i> Consultoria de Campo</li>
+                <li><i class="zmdi zmdi-check"></i> Operacional de Loja (abertura/fechamento)</li>
+                <li><i class="zmdi zmdi-check"></i> Segurança no trabalho</li>
+                <li><i class="zmdi zmdi-check"></i> Inspeção de equipamentos.</li>
+                <li><i class="zmdi zmdi-check"></i> Certificados de Qualidade (ISO, meio ambiente etc).</li>
+                <li><i class="zmdi zmdi-check"></i> Visual Merchandising</li>
+                <li><i class="zmdi zmdi-check"></i> Vistorias em ambientes.</li>
+                <li><i class="zmdi zmdi-check"></i> Controle de perdas.</li>
+            </ul>
+
+        </div>
+        <div class="hidden-lg col-md-12 col-sm-12 col-xs-12" id="vantagens-background">
+            <img src="~/Content/img/hotSite/placeit.png" style="max-width:100%" />
+        </div>
+
+
+    </div>
+</section>
+
+<section id="customizado">
+    <div class="container">
+
+        <div class="col-xs-12">
+            <h2 class="text-center"> Quero uma versão personalizada para o meu negócio!</h2>
+            <p class="text-center"> Não tem problema, personalizamos a plataforma para atender 100% as suas exigências.</p>
+        </div>
+
+        <div class="col-md-3 col-lg-3 hidden-sm hidden-xs"> <img src="https://s27.postimg.org/nx0m2u6tf/tela1.png" id="customizado-img"></div>
+        <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12" style="text-align: center;">
+            <h3> Confira algumas opções:</h3>
+            <br>
+            <ul>
+                <li><i class="zmdi zmdi-check"></i> Integração com outros sistemas (ERP,BI,CRM, etc.)</li>
+                <li><i class="zmdi zmdi-check"></i> Notas e pontuações adequadas a sua necessidade.</li>
+                <li><i class="zmdi zmdi-check"></i> Relatórios, rankings e gráficos personalizados.</li>
+                <li><i class="zmdi zmdi-check"></i> Unificação de login via AD, intranet, etc...</li>
+                <li><i class="zmdi zmdi-check"></i> Adicionar novas funcionalidades.</li>
+                <li><i class="zmdi zmdi-check"></i> Layout próprio.</li>
+            </ul>
+        </div>
+        <div class="col-md-3 col-lg-3 hidden-sm hidden-xs"> <img src="https://s27.postimg.org/bjnrvxh4z/tela3.png" id="customizado-img"></div>
+        <div class="col-xs-12 col-sm-12 hidden-lg hidden-md"> <img src="https://s23.postimg.org/9an31g2xn/tela2.png" id="customizado-img"></div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="section-home grade" style="padding-top:100px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Entre em contato e teste o Quiveer grátis.</h2>
+                       <p> Queremos elevar a eficiência da sua equipe, só precisamos de sua iniciativa.</p>
+                 
+                </div>
+            </div>
+            <div class="row" id="form_contato">
+                <div class="col-md-12 col-lg-6">
+                    @Html.Partial("~/Views/Home/_Contato.cshtml", new EmailContato())
+                </div>
+
+                <div class="col-md-12 col-lg-6">
+                    <h3 class="section-subheading text-muted">
+                        <i class="zmdi zmdi-phone"></i> (79) 98149-8063 <small style="color: white;">(Oi)</small>
+                    </h3>
+                    <h3 class="section-subheading text-muted"><i class="zmdi zmdi-whatsapp"></i> (79) 99924-5550 <small style="color: white;">(Vivo)</small></h3>
+                    <h3 class="section-subheading text-muted"><i class="zmdi zmdi-email"></i> contato@helloworldsoft.com</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 hidden-xs text-center">
+                    <a class="navbar-brand" href="http://andreywallace.github.io/presetantion-caju-valley/" target="_blank" title="Gestor de Vendas Home Page">
+                        <span style="font-family: 'Oswald' , sans-serif; text-transform: uppercase; font-weight: 300;">Made in Caju Valley </span>
+                    </a>
+                </div>
+                <div class="col-sm-4 col-xs-12 text-center">
+                    <a href="http://helloworldsoft.com" target="_blank"> <p> Direitos reservados para Hello World Softwares <img style="max-height:35px" src="../Content/img/marcafundo.png" /> </p></a>
+                </div>
+                <div class="col-sm-4  col-xs-12 text-center">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="https://www.facebook.com/QuiverSoftware/?fref=ts" title="LinkedIn">Facebook</a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:andrey@helloworldsoft.com" title="email">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+
+
+
+<!-- Modal fullscreen -->
+<div class="modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" id="modal-header-full-screen">
+                <button type="button" class="close" data-dismiss="modal"><h1 aria-hidden="true" style="font-family:Brandon"><i class="zmdi zmdi-close-circle"></i></h1><h1 class="sr-only">Close</h1></button>
+                <h1 class="modal-title icon-texto-grande" id="myModalLabel">Funcionalidades</h1>
+            </div>
+            <div class="modal-body" id="body-full-screen">
+                <div class="row container-fluid">
+                    <!--  CHECKLIST -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-padding">
+                            <i class="zmdi zmdi-assignment-o zmdi-hc-4x"></i>
+                            <h3>Checklists e formulários</h3>
+                            <p>Crie modelos personalizados de checklists e formulários que serão preenchidos digitalmente.</p>
+                        </div>
+                    </div>
+
+
+                    <!--  EFICIÊNCIA -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-padding">
+                            <i class="zmdi zmdi-arrow-right-top zmdi-hc-4x"></i>
+                            <h3>Grau de eficiência</h3>
+                            <p>
+                                Nào basta fazer a atividade é necessário descobrir a sua eficiência. Calculamos o percentual de eficiência de todas
+                                as inspeções.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <!--  GESTÃO DE EQUIPE -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-padding">
+                            <i class="zmdi zmdi-accounts zmdi-hc-4x"></i>
+                            <h3>Gestão de Equipe</h3>
+                            <p>Gerencie tudo que o seu funcionário deve avaliar ou checkar, fazendo inclusive agendamentos recorrentes de atividades.</p>
+                        </div>
+                    </div>
+
+                    <!--  GEOLOCALIZAçÃO -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-padding">
+                            <i class="zmdi zmdi-pin-drop zmdi-hc-4x"></i>
+                            <h3>Geolocalização</h3>
+                            <p>Registre via GPS do smartphone os locais onde seus colaboradores irão executar suas inspeções.</p>
+                        </div>
+                    </div>
+
+
+                    <!--  OFFILINE -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-padding">
+                            <i class="zmdi zmdi-wifi-off zmdi-hc-4x"></i>
+                            <h3>Modo-Offline</h3>
+                            <p>Preencha os formulários mesmo sem internet. O inspetor faz as inspeções offline e envia ao servidor quando estiver com internet.</p>
+                        </div>
+                    </div>
+
+                    <!--  Relatórios -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-padding">
+                            <i class="zmdi zmdi zmdi-filter-list zmdi-hc-4x"></i>
+                            <h3>Relatórios</h3>
+                            <p>Gere relatórios periódicos de acompanhamento das inspeções que vão ajudar nas tomadas de decisões.</p>
+                        </div>
+                    </div>
+
+                    <!--  Gráficos -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-padding">
+                            <i class="zmdi  zmdi-trending-up zmdi-hc-4x"></i>
+                            <h3>Gráficos</h3>
+                            <p>Compare unidades, colaboradores e grupos e visualize tudo com gráficos simples e que irão lhe ajudar nas tomadas de decisões.</p>
+                        </div>
+                    </div>
+
+                    <!--  Fotos  -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-padding">
+                            <i class="zmdi zmdi-photo-size-select-large zmdi-hc-4x"></i>
+                            <h3>Anexos de fotos</h3>
+                            <p>Adicione fotos a todos os itens forem necessários nos seus formulários e checklists.</p>
+                        </div>
+                    </div>
+
+
+                    <!--  AÇÃO  -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-padding">
+                            <i class="zmdi zmdi-assignment-check zmdi-hc-4x"></i>
+                            <h3>Plano de ação</h3>
+                            <p>Tenha registrado digitalmente todos os planos de melhorias para cada item não conforme registrado nas suas inspeções.</p>
+                        </div>
+                    </div>
+
+                    <!--  INtegração  -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-padding">
+                            <i class="zmdi zmdi-swap zmdi-hc-4x"></i>
+                            <h3>Integração com outros sistemas</h3>
+                            <p>Podemos conectar o Quiveer com outros sistemas úteis a sua empresa como: ERP, CRM, Workflow e outros.</p>
+                        </div>
+                    </div>
+
+                    <!--  Segurança  -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-padding">
+                            <i class="zmdi  zmdi-lock zmdi-hc-4x"></i>
+                            <h3>Segurança</h3>
+                            <p>Tenha o backup de todas as informações essenciais para o seu negócio. </p>
+                        </div>
+                    </div>
+
+                    <!--  Notificações  -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-padding">
+                            <i class="zmdi zmdi-notifications-active zmdi-hc-4x"></i>
+                            <h3>Notificações</h3>
+                            <p>Receba por email e dentro do sistema de gestão web notificações automáticas de todas as atividades finalizadas.</p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $(".section-home, #contact").css({ minHeight: $(window).innerHeight() + 'px' });
+            $(window).resize(function () {
+                $(".section-home, #contact ").css({ minHeight: $(window).innerHeight() + 'px' });
+            });
+        });
+    </script>
+}

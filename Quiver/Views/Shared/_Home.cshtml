@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <title>Quiveer - Gestão de inspeções</title>
+    <link href="/Content/img/favicon.jpg" rel="shortcut icon" type="image/x-icon">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Style/hotsite")
+
+    <script type="text/javascript">
+        window.smartlook || (function (d) {
+            var o = smartlook = function () { o.api.push(arguments) }, h = d.getElementsByTagName('head')[0];
+            var c = d.createElement('script'); o.api = new Array(); c.async = true; c.type = 'text/javascript';
+            c.charset = 'utf-8'; c.src = '//rec.smartlook.com/recorder.js'; h.appendChild(c);
+        })(document);
+        smartlook('init', '553ce394ceecec4f80e04ea0a7d853cf39634783');
+    </script>
+    <script async="" type="text/javascript" charset="utf-8" src="//rec.smartlook.com/recorder.js"></script>
+
+    <meta property="og:image" content="https://s23.postimg.org/tp1xa24mj/quiver_Print.png">
+    <meta property="og:title" content="Quiveer - Gestor de inspeções e checklists">
+    <meta property="og:description" content="Descubra o percentual de eficiência de sua empresa, gerenciando, avaliando e medindo todos os processos e atividades executados.">
+
+    <meta name="description" content="Descubra o percentual  de eficiência sua empresa, gerenciando, avaliando e medindo todos os processos atividades executados.">
+    <meta name="google-site-verification" content="zALyyWnXaxdZFiYyEfvgkmmSoedUHNqWEEojTwjQj60">
+    <meta name="robots" content="noindex,nofollow">
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/hotsite")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

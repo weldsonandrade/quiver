@@ -1,0 +1,226 @@
+﻿@using Quiver.DTO.Enum;
+@using Quiver.Common.Utils;
+
+@model Quiver.Models.PlanoAcaoVM
+
+@{
+    ViewBag.Title = "Quiveer - Plano de ação";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content-header row m-l-0">
+    <div class="col-xs-6">
+        <h1 class="titulo-opcao"> <i class="zmdi zmdi-assignment-check p-l-5"></i>Detalhes do plano de ação</h1>
+    </div>
+
+    <div class="col-xs-6 text-right ">
+        <ol class="breadcrumb" style="border-bottom:none;margin-bottom:0;padding:20px 20px 20px 0;">
+            <li>@Html.ActionLink("Lista com planos de ações", "Index", "PlanoAcao")</li>
+            <li>@Html.ActionLink("Detalhes do plano de ação", "IndexAvaliacaoFinalizada", "DetalhePlanoAcao")</li>
+        </ol>
+    </div>
+
+</section>
+
+@using (@Ajax.BeginForm("Manipular", null, new AjaxOptions() { HttpMethod = "POST", OnBegin = "onBegin()", OnSuccess = "onSuccess(data)", OnComplete = "onComplete()" }, new { id = "form-plano-acao" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(m => m.Id)
+    <section class="content">
+        <div class="col-lg-12">
+            <div class="card ">
+                <div class="card-header p-b-10">
+                    <h2>Dados da inspeção, formulário e item onde foi detectada a não conformidade.</h2>
+                </div>
+                <div class="card-body card-padding">
+                    <div class="row">
+                        <div class="col-sm-3 campo">
+                            <small>Rótulo</small>
+                            <h4 class="m-0 f-400">@Model.Origem.Rotulo</h4>
+                        </div>
+
+                        <div class="col-sm-2 campo">
+                            <small>Nome do Grupo</small>
+                            <h4 class="m-0 f-400">@Model.Origem.Grupo</h4>
+                        </div>
+
+                        <div class="col-sm-2 campo">
+                            <small>Nome do Local</small>
+                            <h4 class="m-0 f-400">@Model.Origem.Unidade</h4>
+                        </div>
+
+                        <div class="col-sm-3 campo">
+                            <small>Email do Inspetor</small>
+                            <h4 class="m-0 f-400">@Model.Origem.Usuario</h4>
+                        </div>
+
+					    <div class="col-sm-2 campo">
+                            <small>Data Execução</small>
+                            <h4 class="m-0 f-400">@Model.Origem.DataExecucao.ToString("dd/MM/yyyy")</h4>
+                        </div>
+                       
+                    </div>
+
+                    <div class="bs-callout bs-callout-warning p-l-10 p-t-0 p-b-0" id="callout-formgroup-inputgroup" style="background:#f5f5f5">
+                        
+                        <div class="row">
+                            <div class="col-sm-12 campo">
+                                <small>Nome do formulário</small>
+                                <h4 class="m-0 f-400">@Model.Origem.Formulario</h4>
+                            </div>
+
+                            <div class="col-sm-12 campo">
+                                <small>Título do Item</small>
+                                <h4 class="m-0 f-400">@Model.Origem.Item</h4>
+                            </div>
+
+                            <div class="col-sm-12 campo">
+                                <small>Alternativas</small>
+
+                                @foreach (var alternativa in Model.Origem.Alternativas)
+                                {
+                                    var marcadaIcon = alternativa.Marcada ? "zmdi-check mdc-text-green" : "zmdi-close mdc-text-gray";
+						        	var marcadaText = alternativa.Marcada ? "c-green" : "c-gray";
+                                    <p class="m-0 f-400 @marcadaText p-b-5 p-l-0">
+                                        <i class="zmdi @marcadaIcon" style="padding: 0 5px;"></i> @alternativa.Descricao
+                                        @if (alternativa.NaoConformidade)
+                                        { <span class="badge badge-nao-conforme">Não conforme</span> }
+                                    </p>
+                                }
+                            </div>
+						
+						     <div class="col-sm-12">
+                                <small>Justificativa</small>
+                                <h4 class="m-0 p-b-10 f-400"> COLOCAR JUSTIFICATIVA</h4>
+                                </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="card ">
+                <div class="card-header p-b-10">
+                    <h2 id="">Dados do Plano de Ação</h2>
+                </div>
+                <div class="card-body card-padding">
+                    <div class="row">
+                        @* O QUE SERÄ FEITO *@
+                        <div class="form-group fg-float col-md-12 col-lg-12 m-b-0 m-t-25" id="pa-oque">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(m => m.OQue, new { @class = "input-sm form-control fg-input", @id = "pa-input-oque", @autocomplete = "off", @onkeyup = "validarOque()" })
+                                <label class="fg-label">O que será feito?</label>
+                            </div>
+                            <small class="help-block" id="mensagem-erro-oque">Campo obrigatório.</small>
+                        </div>
+
+                        @* PORQUE SERÁ FEITO *@
+                        <div class="form-group fg-float col-md-12 col-lg-12 m-b-0 m-t-25" id="pa-porque">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(m => m.Porque, new { @class = "input-sm form-control fg-input", @id = "pa-input-porque", @autocomplete = "off", @onkeyup = "validarPorque()" })
+                                <label class="fg-label">Por que será feito?</label>
+                            </div>
+                            <small class="help-block" id="mensagem-erro-porque">Campo obrigatório.</small>
+                        </div>
+
+                        @* COMO SERÁ FEITO *@
+                        <div class="form-group fg-float col-md-12 col-lg-12 m-b-0 m-t-25" id="pa-como">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(m => m.Como, new { @class = "input-sm form-control fg-input", @id = "pa-input-como", @autocomplete = "off", @onkeyup = "validarComo()" })
+                                <label class="fg-label">Como será feito?</label>
+                            </div>
+                            <small class="help-block" id="mensagem-erro-como">Campo obrigatório.</small>
+                        </div>
+
+                        @* Quem irá fazer *@
+                        <div class="form-group fg-float col-md-12 col-lg-6  m-b-0 m-t-25" id="pa-quem">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(m => m.Quem, new { @class = "input-sm form-control fg-input", @id = "pa-input-quem", @autocomplete = "off", @onkeyup = "validarQuem()" })
+                                <label class="fg-label">Quem vai fazer?</label>
+                            </div>
+                            <small class="help-block" id="mensagem-erro-quem">Campo obrigatório.</small>
+                        </div>
+
+                        @* EMAIL RESPONSÁVEL *@
+                        <div class="form-group fg-float col-md-12 col-lg-6  m-b-0 m-t-25" id="pa-responsavel">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(m => m.Responsavel, new { @class = "input-sm form-control fg-input", @id = "pa-input-responsavel", @autocomplete = "off", @onkeyup = "validarResponsavel()" })
+                                <label class="fg-label">Email do responsável pela execução do plano</label>
+                            </div>
+                            <small class="help-block" id="mensagem-erro-responsavel">Email obrigatório.</small>
+                        </div>
+
+                        @* ONDE SERÄ FEITO  *@
+                        <div class="form-group fg-float col-md-12 col-lg-6  m-b-0 m-t-25" id="pa-onde">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(m => m.Onde, new { @class = "input-sm form-control fg-input", @id = "pa-input-onde", @autocomplete = "off", @onkeyup = "validarOnde()" })
+                                <label class="fg-label">Onde será feito?</label>
+                            </div>
+                            <small class="help-block" id="mensagem-erro-onde">Campo obrigatório.</small>
+                        </div>
+
+                        @* Quanto? *@
+                        <div class="form-group fg-float col-md-12 col-lg-3  m-b-0 m-t-25" id="pa-quanto">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(m => m.Quanto, new { @class = "input-sm form-control fg-input", @id = "pa-input-quanto", @type = "text",  @autocomplete = "off", @data_affixes_stay = "true", @data_thousands = ".", @data_decimal = ",",  @onkeyup = "validarQuanto()" })
+                                <label class="fg-label">Qual o custo?</label>
+                            </div>
+                            <small class="help-block" id="mensagem-erro-quanto">Campo obrigatório.</small>
+                        </div>
+
+                        @* Data limite *@
+                        <div class="input-group form-group col-lg-3 col-md-12 m-b-0  p-t-10" id="pa-quando" style="margin-top:-10px">
+                            <small class="p-l-10" style="color: #4a4a4a;">Até quando será feito?</small>
+                            <div class="dtp-container fg-line">
+                                @Html.TextBoxFor(m => m.Quando, new { @class = "form-control date", @id = "pa-input-quando", @style = "height: 26px;", @autocomplete = "off", onfocusout = "validarData()", @onkeyup = "validarData()" })
+                            </div>
+                            <small class="help-block" id="mensagem-erro-data" style="padding-left: 10px;">Data é obrigatória.</small>
+                        </div>
+
+
+                        @* OBSERVACAO *@
+                        <div class="form-group fg-float col-md-12 col-lg-8  m-b-0  m-t-15" id="pa-observacao">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(m => m.Observaocao, new { @class = "input-sm form-control fg-input", @id = "pa-input-observacao", @autocomplete = "off" })
+                                <label class="fg-label">Observação</label>
+                            </div>
+                        </div>
+
+                        @* STATUS DO PLANO DE AÇÃO *@
+                        <div class="form-group col-lg-4 col-md-12" id="pa-status">
+                            <small style="color: #4a4a4a;">
+                                Status do Plano de Ação
+                            </small>
+                            <div class="fg-line">
+                                <div class="select">
+                                    @Html.EnumDropDownListFor(
+                                        x => x.Situacao,
+                                        new { @class = "selectpicker", id = "select-pa-status" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="col-xs-12 text-right">
+        <button type="submit" id="btnSalvarPA" class="btn btn-primary btn-lg m-b-15 waves-effect"><i class="zmdi zmdi-rotate-right zmdi-hc-spin m-r-5" id="icon-carregar" style="display:none"></i>Salvar Alterações no Plano de Ação</button>
+    </div>
+}
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/Custom/planoAcao/detalhesPlanoAcao.js">    </script>
+    <script>
+        $(function () {
+            $('#pa-input-quanto').maskMoney();
+        })
+        validarTudo();
+    </script>
+}

@@ -1,0 +1,72 @@
+﻿<div class="row">
+    <div class="col-md-10">
+
+        <div class="card" id="card-filtros" style="visibility:hidden">
+            <div class="card-body ">
+                <div class="row card-padding" style="padding:16px 26px;">
+                    <div class="col-sm-6 m-b-0">
+                        <small>Filtrar unidades</small>
+                        <select class="tag-select" multiple data-placeholder="Selecione as Unidades..." name="DDLFilterUnidade" id="DDLFilterUnidade" style="width:100%">
+                            @foreach (var unidade in (IEnumerable<SelectListItem>)ViewBag.Unidades)
+                            {
+                                <option value=@unidade.Value>@unidade.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-sm-6 m-b-0">
+                        <small>Filtrar usuários</small>
+                        <select class="tag-select" multiple data-placeholder="Selecione os Usuários..." name="DDLFilterUsuario" id="DDLFilterUsuario" style="width:100%">
+                            @foreach (var usuario in (IEnumerable<SelectListItem>)ViewBag.Usuarios)
+                            {
+                                <option value=@usuario.Value>@usuario.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="timestamp_carregar" />
+        <div id='calendar'></div>
+    </div>
+
+    <div class="col-md-2 p-l-5 p-r-5" >
+        <div class="card">
+            <div class="card-header text-center">
+                <h2>Opções de inspeções</h2>
+            </div>
+            <div class="card-body card-padding text-center p-l-0 p-r-0">
+                <button id="addAvaliacao" type="button" class="btn btn-primary btn-sm waves-effect waves-light m-b-10" style="margin:0" data-toggle="modal" onclick="adicionar();">
+                    <i class="zmdi zmdi-plus" style="margin-right:5px"></i>Agendar inspeção
+                </button>
+
+                <a type="button" class="btn btn-info btn-sm  waves-effect waves-light m-b-10" style="margin:0"  href="@Url.Action("Index", "Avaliacao")">
+                    <i class="zmdi zmdi-search" style="margin-right:5px"></i>Buscar inspeções
+                </a>
+            </div>
+        </div>
+        <div class="card calendar-trash" id="calendarTrash" style="display: none; background: #f44336;">
+            <div class="card-header text-center">
+                <p style="color:white">Arraste até aqui para deletar o agendamento</p>
+                <i class="zmdi zmdi-delete" style="margin-right: 5px; font-size: 50px; color:white;"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header text-center" style="padding: 23px 15px;">
+                <h2>Legenda das inspeções</h2>
+            </div>
+
+            <div class="card-body card-padding" style="padding: 10px 15px 23px 15px;">
+                <p> <i class="zmdi" style="background-color: #1B5E20; min-height: 15px; min-width: 15px; margin-right: 5px"></i>Inspeção finalizada.</p>
+                <p> <i class="zmdi" style="background-color: #d33; min-height: 15px; min-width: 15px; margin-right: 5px"></i> Inspeção atrasada.</p>
+                <p> <i class="zmdi" style="background-color: #4285F4; min-height: 15px; min-width: 15px; margin-right: 5px"></i>Inspeção em andamento.</p>
+                <p> <i class="zmdi zmdi-alert-triangle mdc-text-grey-900" style="min-height: 15px; min-width: 15px; margin-right: 5px"></i>Possue item não conforme.</p>
+                <p> <i class="zmdi zmdi-smartphone-iphone mdc-text-grey-900" style="min-height: 15px; min-width: 15px; margin-right: 5px"></i>Criado pelo usuário mobile.</p>
+            </div>
+        </div>
+      
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Quiver.Core.Models.Grupo" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAAAAAAAAAAAAAAAAAAAAAAQAAAAAAEAAAQEAIgA=</HashCode>
+      <FileName>Models\Grupo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Empresa" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Usuarios" />
+      <Property Name="Questionarios" />
+      <Property Name="Classificacoes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Quiver.Core.Models.Alternativa" Collapsed="true">
+    <Position X="19.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAABBAAAAAAAAAAAACAAAgAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\Alternativa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Quiver.Core.Models.Avaliacao" Collapsed="true">
+    <Position X="5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAQQAoJAAAEoACAwAgAAAAAAIAAEAQCEBCAAAgA=</HashCode>
+      <FileName>Models\Avaliacao.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Usuario" />
+      <Property Name="Unidade" />
+      <Property Name="Situacao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Quiver.Core.Models.AvaliacaoQuestionario" Collapsed="true">
+    <Position X="12.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAQAAJAAAAAAACAAABAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AvaliacaoQuestionario.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Situacao" />
+      <Property Name="Questionario" />
+      <Property Name="Avaliacao" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Respostas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Quiver.Core.Models.Classificacao" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiAAAAABABAAAAAABAAAAAAAFAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Classificacao.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Grupo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Quiver.Core.Models.Empresa" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAQAAAAAAAAAABAAAAAAgAIQAAAEAAAAAEAAgA=</HashCode>
+      <FileName>Models\Empresa.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Situacao" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Grupos" />
+      <Property Name="Unidades" />
+      <Property Name="Usuarios" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Quiver.Core.Models.Foto" Collapsed="true">
+    <Position X="12.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAASAIAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Foto.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Resposta" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Quiver.Core.Models.Item" Collapsed="true">
+    <Position X="16.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAMAAAIBQAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Models\Item.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Alternativa" />
+      <Property Name="Questao" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Respostas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Quiver.Core.Models.Notificacao" Collapsed="true">
+    <Position X="5.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAIAAEAAAABAAAAAARAAAAAAABAAAAQ=</HashCode>
+      <FileName>Models\Notificacao.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Avaliacao" />
+      <Property Name="UsuarioNotificado" />
+      <Property Name="Tipo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Quiver.Core.Models.Questao" Collapsed="true">
+    <Position X="16.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAJBEAAAAACAAAAACAAAgAAQAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Questao.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Questionario" />
+      <Property Name="Tipo" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Itens" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Quiver.Core.Models.Questionario" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAyAAAAAARAAAAAAABAAAAABAAAgAAAAAAgAAEAIAA=</HashCode>
+      <FileName>Models\Questionario.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Grupo" />
+      <Property Name="QuestionarioAnterior" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Questoes" />
+      <Property Name="AvaliacoesQuestionario" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Quiver.Core.Models.Resposta" Collapsed="true">
+    <Position X="12.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCBAAAAApAEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Resposta.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AvaliacaoQuestionario" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Fotos" />
+      <Property Name="Itens" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Quiver.Core.Models.Unidade" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAAAQAAAAAAAAAgAAAAAAAAAAAAAAAEAAAAEAIAA=</HashCode>
+      <FileName>Models\Unidade.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Empresa" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Avaliacoes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Quiver.Core.Models.Usuario" Collapsed="true">
+    <Position X="0.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAACAAAAAAAAgBAAAAAAAAAAAAAAEAAAAEAAAA=</HashCode>
+      <FileName>Models\Usuario.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Empresa" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Avaliacoes" />
+      <Property Name="Grupos" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Enum Name="Quiver.Core.Models.SituacaoAvaliacao" Collapsed="true">
+    <Position X="9" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Avaliacao.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Quiver.Core.Models.TipoManipulacao" Collapsed="true">
+    <Position X="10" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACIAAAgA=</HashCode>
+      <FileName>Models\Avaliacao.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Quiver.Core.Models.FrequenciaRecorrencia" Collapsed="true">
+    <Position X="8" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Avaliacao.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Quiver.Core.Models.SituacaoEmpresa" Collapsed="true">
+    <Position X="17.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Empresa.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Quiver.Core.Models.TipoNotificacao" Collapsed="true">
+    <Position X="5.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Notificacao.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Quiver.Core.Models.TipoQuestao" Collapsed="true">
+    <Position X="19.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Models\Questao.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,95 @@
+﻿/* .modal-fullscreen */
+
+
+#modal-fullscreen .modal-header {
+    background-color: #2196f3;
+    color: white;
+     box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+#modal-fullscreen .modal-body {
+    background-color: #f2f2f2;
+}
+
+#modal-fullscreen .close {
+     color: white;
+     opacity: 1.0 !important;
+}
+
+#modal-fullscreen .close:hover {
+     color: black !important;   
+}
+
+#modal-fullscreen .close > h1 {
+    color: white;
+    font-family:Brandon !important;
+}
+
+.col-padding > h3 {
+             font-family:Brandon !important;
+}
+.col-padding > i {
+    color:#2196f3;
+}
+
+#modal-fullscreen .modal-title {
+    font-family:Brandon;
+    text-align: center;
+}
+
+.modal-fullscreen {
+  background: transparent;
+  padding-right:0 !important;
+}
+
+.modal-fullscreen .modal-content {
+  background: transparent;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.modal-backdrop.modal-backdrop-fullscreen {
+  background: #ffffff;
+}
+
+.modal-backdrop.modal-backdrop-fullscreen.in {
+  opacity: .97;
+  filter: alpha(opacity=97);
+}
+
+/* .modal-fullscreen size: we use Bootstrap media query breakpoints */
+
+.modal-fullscreen .modal-dialog {
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+
+
+#funcionalidades-texto button {
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 40px;
+    -webkit-margin-end: 0px;
+    background-color: #2196f3;
+    border-color:white;
+    font-family:Brandon;
+}
+
+#funcionalidades-texto button:hover{
+       background-color: #1f75b9;
+       border-color:#252525;
+}
+
+#modal-fullscreen .col-padding {
+    padding-top:30px;
+    text-align: center;
+}
+
+#modal-fullscreen .col-padding h3 {
+    margin:0px;
+}
+

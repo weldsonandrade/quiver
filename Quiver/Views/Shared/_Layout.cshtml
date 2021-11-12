@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/img/favicon.jpg" rel="shortcut icon" type="image/x-icon" />
+    <title>@ViewBag.Title</title>
+
+
+    @Styles.Render("~/Style/template")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/template/app.min.1.css" rel="stylesheet">
+    <link href="~/Content/template/app.min.2.css" rel="stylesheet">
+
+    @Styles.Render("~/Content/css")
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAINasz4HCgZuf7EpXuSSGLqUQSUDLy7lY"></script>
+    <!-- aqui a tagJavaScript contando o endereco do googleMaps e com a chave de acesso que adquirimos junto a conta do Google
+      este começo: http://maps.googleapis.com/maps/api/js?key= é padrao, apos ele, devemos inserir nossa chave e finalizar
+    com: &sensor=false '-->
+
+    <script type = 'text/javascript' >
+        var appInsights=window.appInsights||function(config)
+        {
+            function r(config){ t[config] = function(){ var i = arguments; t.queue.push(function(){ t[config].apply(t, i)})} }
+            var t = { config:config},u=document,e=window,o='script',s=u.createElement(o),i,f;for(s.src=config.url||'//az416426.vo.msecnd.net/scripts/a/ai.0.js',u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=['Event','Exception','Metric','PageView','Trace','Ajax'];i.length;)r('track'+i.pop());return r('setAuthenticatedUserContext'),r('clearAuthenticatedUserContext'),config.disableExceptionTracking||(i='onerror',r('_'+i),f=e[i],e[i]=function(config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o),s}),t
+        }({
+            instrumentationKey:'73d39ca4-b272-4e74-84d4-2e2ba0ae714e'
+        });
+        
+        window.appInsights=appInsights;
+        appInsights.trackPageView();
+    </script>
+</head>
+<body>
+    @Html.Partial("_Header")
+    <section id="main">
+        @Html.Partial("_Menu")
+        <section id="content">
+            <div class="container">
+                @RenderSection("featured", required: false)
+                <section class="content-wrapper main-content clear-fix">
+                    @RenderBody()
+                </section>
+            </div>
+        </section>
+    </section>
+
+    <footer id="footer">
+        <div class="content-wrapper">
+            <div class="float-left">
+                <a href="http://www.helloworldsoft.com" target="_blank">
+                    <img src="~/Content/img/marcafundo.png" style="max-height:35px">
+                </a> <p>&copy; @DateTime.Now.Year - Hello World Softwares </p>
+            </div>
+        </div>
+    </footer>
+    <div id="modalChangePassword"></div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/bundles/template")
+
+    @Scripts.Render("~/bundles/flotCharts")
+    @Scripts.Render("~/bundles/charts")
+
+    @Scripts.Render("~/bundles/signalR")
+
+    @Scripts.Render("~/bundles/moneyMask")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

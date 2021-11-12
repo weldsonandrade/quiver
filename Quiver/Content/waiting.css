@@ -1,0 +1,83 @@
+﻿
+
+
+#waiting-modal {
+     background:rgba(66, 133, 244, 0.47);
+}
+
+#waiting-dialog  .modal-content {
+    background:#4285f4;
+    box-shadow:none;
+}
+
+#waiting-dialog .modal-header h1{
+    color:white;
+    text-align:center;
+    font-family:Brandon;
+    text-transform:uppercase;
+    font-size:25px;
+}
+
+#waiting-dialog{
+    min-width:100%;
+}
+
+#waiting-dialog .modal-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 0 solid #4285f4;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+
+/* Relógio animado*/
+.spinner {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  border-radius: 30px;
+  border: 2px solid #fff;
+  margin: 0px auto;
+}
+.spinner:after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: #fff;
+  top: 28px;
+  left: 28px;  
+  transform-origin: 1px 1px;
+  animation: spin 1s infinite linear;
+}
+.spinner:before {
+  content: "";
+  position: absolute;
+  left: 26px;
+  top: 26px;
+  height: 4px;
+  width: 4px;
+  background: #fff;
+  border-radius: 4px;
+  animation: expand 1s infinite linear alternate;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes expand {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}

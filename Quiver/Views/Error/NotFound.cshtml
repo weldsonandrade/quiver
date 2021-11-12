@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Quiveer - 404 Página não encontrada";
+    Layout = "~/Views/Shared/Error.cshtml";
+}
+
+<div style="min-height:100%;margin-top:30px">
+    <div class="container-fluid">
+        <section class="content-header"></section>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="jumbotron center animated fadeIn">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <ul class="creatures" id="creatures">
+                                    <li>
+                                        <div class="click-anim">
+                                            <figure class="nervous" style="background-color:#4285F4">
+                                                <div class="eye"></div>
+                                                <div class="eye"></div>
+
+                                                <div class="mouth teeth"></div>
+                                            </figure>
+                                        </div>
+                                        <div class="shadow"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-8">
+                                <h1>Ops!</h1>
+                                <h2>Página não encontrada</h2>
+                                <p>
+                                    A página solicitada não pôde ser encontrada, entre em contato com o suporte ou tente novamente.
+                                </p>
+                                @Html.ActionLink("Leve-me para a página inicial", "Index", "Dashboard", null, new { @class = "btn btn-lg btn-primary" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#texto-pre-loading')[0].innerHTML = "Erro";
+        $('body').addClass('loaded');
+    });
+
+    $(document).ajaxStop(function () {
+        $('body').addClass('loaded');
+    });
+</script>
+

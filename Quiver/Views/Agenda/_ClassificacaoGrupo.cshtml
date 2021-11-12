@@ -1,0 +1,16 @@
+﻿@model  IEnumerable<Quiver.Models.ClassificacaoViewModels>
+
+<p style="font-size:16px" >
+
+    @{int count = 0; }
+    @foreach (var a in Model)
+    {
+        var cor = '#'+a.CorIntervaloClassificacao;
+        var texto = @a.Descricao + " (" + @a.InicioIntervalo + "% até " + @a.FimIntervalo + "%)";
+        String iClass = (count == 0) ? "zmdi m-r-5 " : "zmdi m-r-5 m-l-20 ";
+        
+        count++; 
+        <i class="@iClass"  id="icone-@a.FimIntervalo" name="@texto"  style="background-color:@cor; min-height: 13px; min-width: 13px;"></i> @texto
+        @Html.Hidden(@a.InicioIntervalo.ToString(), @a.CorIntervaloClassificacao, new { @id = @a.FimIntervalo, @class="cor-intervalo" })
+    }
+</p>

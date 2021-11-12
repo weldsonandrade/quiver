@@ -1,0 +1,57 @@
+﻿<!-- Modal -->
+<div class="modal " id="manipularUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog  modal-primary modal-sm" role="document" style="z-index: 9999999;">
+        <div class="modal-content">
+            @using (@Ajax.BeginForm("RegisterGeneratePassword", "Account", null, new AjaxOptions() { HttpMethod = "POST", OnBegin = "onBeginManipularUsuario()", OnSuccess = "onManipularUsuarioSuccess(data)" }, new { id = "form-usuario" }))
+            {
+                <input id="Id" name="Id" type="hidden" />
+                <input id="IdEmpresa" name="IdEmpresa" type="hidden" />
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Manipular o Usuário</h4>
+                </div>
+                <div class="modal-body row">
+                    @Html.ValidationSummary(true)
+                    <div class="form-group fg-float col-md-12 " id="usuario-erro">
+                        <small class="help-block" id="mensagem-erro"></small>
+                    </div>
+                    @* Nome do usuário *@
+                    <div class="form-group fg-float col-md-12 " id="usuario-nome">
+                        <div class="fg-line">
+                            <input type="text" id="Nome" name="Nome" class="input-sm form-control fg-input" autocomplete="off" />
+                            <label class="fg-label">Nome</label>
+                        </div>
+                    </div>
+
+                    @* Email do usuário *@
+                    <div class="form-group fg-float col-md-12 " id="usuario-email">
+                        <div class="fg-line">
+                            <input type="text" name="Login" class="input-sm form-control fg-input" id="usuario-input-email" autocomplete="off" onkeyup="validarEmailUsuario()" />
+                            <label class="fg-label ">Email</label>
+                        </div>
+                        <small class="help-block" id="mensagem-erro-email">Email é obrigatório.</small>
+                    </div>
+
+                    @* Perfil *@
+                    <div class="form-group  col-md-12 m-b-20" id="usuario-perfil">
+                        <small>Perfil</small>
+                        <div class="fg-line">
+                            <div class="select">
+                                <select id="user-perfil" name="Perfil" class="form-control" onChange="validarPerfilUsuario()"></select>
+                            </div>
+                        </div>
+                        <small class="help-block " id="mensagem-erro-perfil">Perfil obrigatório.</small>
+                    </div>
+
+                    <div class="col-md-4"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="btnSalvarUsuario" onclick="validarTodosCamposUsuario()" class="btn btn-primary">
+                        <i class="zmdi zmdi-rotate-right zmdi-hc-spin m-r-5" id="icon-filtrar" style="display:none"></i> Salvar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

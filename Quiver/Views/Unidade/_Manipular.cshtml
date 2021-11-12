@@ -1,0 +1,31 @@
+﻿<div class="modal" id="myUnidadeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-primary modal-sm" role="document" style="z-index: 9999999;">
+        <div class="modal-content ">
+            @using (Ajax.BeginForm("Manipular", null, new AjaxOptions() { HttpMethod = "POST", OnSuccess = "onSuccess(data);" }, new { id = "form-unidade" }))
+            {
+                @Html.ValidationSummary(true)
+
+                <input id="Id" name="Id" type="hidden" />
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Manipular local</h4>
+                </div>
+                <div class="modal-body">
+
+                    @* Nome da LOCAL *@
+                    <div class="form-group fg-float" id="unidade-nome">
+                        <div class="fg-line">
+                            <input type="text" class="input-sm form-control fg-input" id="unidade-input-nome" name="Nome" autocomplete="off" onkeyup="validarNome()" />
+                            <label class="fg-label">Descrição</label>
+                        </div>
+                        <small class="help-block" id="mensagem-erro-nome">O nome do local é obrigatório.</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="salvar-unidade" onclick="validarTodosCampos()" class="btn btn-primary" disabled>Salvar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

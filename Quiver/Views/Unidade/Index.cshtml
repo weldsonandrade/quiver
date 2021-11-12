@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Gestão de Unidades - Quiver";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="row ">
+        <div class="col-xs-8 ">
+            <h1 class="titulo-opcao">
+                <i class="zmdi zmdi-store"></i> Controle dos Locais
+            </h1>
+        </div>
+        <div class="col-xs-4 text-right ">
+            <ol class="breadcrumb" style="border-bottom:none;margin-bottom:0;padding:20px 20px 20px 0;">
+              @*  <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li> *@
+                <li>@Html.ActionLink("Locais", "Index", "Unidade")</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div id="modal">
+        @Html.Partial("_Manipular")
+    </div>
+    @Html.Partial("_Card")
+</section>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/Custom/unidade/unidade.js"></script>
+}

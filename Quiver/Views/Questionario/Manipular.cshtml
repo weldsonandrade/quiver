@@ -1,0 +1,65 @@
+﻿@model Quiver.Models.QuestionarioVM
+
+@{
+    ViewBag.Title = "Quiveer - Formulário";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="row">
+        <div class="col-xs-7">
+
+            @if (Model.Id == null)
+            {
+                <h1 class="titulo-opcao"> <i class="zmdi zmdi-assignment-o"></i> Criando um novo formulário</h1>
+            }
+            else
+            {
+                <h1 class="titulo-opcao"> <i class="zmdi zmdi-assignment"></i> Editando um formulário</h1>
+            }
+
+
+        </div>
+        <div class="col-xs-5 text-right ">
+            <ol class="breadcrumb" style="border-bottom:none;margin-bottom:0;padding:20px 20px 20px 0;">
+               @* <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li> *@
+                <li>@Html.ActionLink("Lista de Formulários", "Index", "Questionario")</li>
+                <li>@Html.ActionLink("Formulários", "Manipular", "Questionario")</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+@using (@Ajax.BeginForm("Manipular", null, new AjaxOptions() { HttpMethod = "POST", OnBegin = "onBegin()", OnSuccess = "onSuccess(data)", OnComplete = "onComplete()" }, new { id = "form-questionario" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(m => m.Id)
+    <div class="card animated fadeIn">
+        <div class="card-header">
+            <h2>Dados gerais do formulário</h2>
+        </div>
+
+        <div class="card-body card-padding" style="padding-bottom: 0px" id="formulario-dados-gerais">
+            @* Nome do Formulário *@
+            <div class="row">
+                <div class="form-group fg-float col-md-12 col-lg-8 m-b-0" id="formulario-nome">
+                    <div class="fg-line">
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "input-sm form-control fg-input validar", @id = "formulario-input-nome", @autocomplete = "off", @onkeyup = "validarNome()", @onFocusOut = "validarNome()" })
+                        <label class="fg-label">Nome</label>
+                    </div>
+                    <small class="help-block" id="mensagem-erro-nome">O nome do formulário é obrigatório.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_Questao", @Model.Questoes);
+
+    <div class="col-md-12 text-right">
+        <button type="submit" id="btnSalvarQuestionario" class="btn btn-lg btn-primary" onclick="ordenarQuestoes(); validarTodosCampos();"><i class="zmdi zmdi-rotate-right zmdi-hc-spin" id="icon-salvar" style="display:none"></i> Salvar Formulário</button>
+    </div>
+}
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/Custom/formulario/questionariovalidacoes.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/formulario/questionario.js"></script>
+}

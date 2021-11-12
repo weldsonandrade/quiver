@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Buscar inspeções - Quiver";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content-header">
+    <div id="modal"></div>
+
+    <div class="row">
+        <div class="col-xs-8 ">
+            <h1 class="titulo-opcao">
+                <i class="zmdi zmdi-assignment"></i> Busca detalhada de inspeções
+            </h1>
+        </div>
+        <div class="col-xs-4 text-right ">
+            <ol class="breadcrumb" style="border-bottom:none;margin-bottom:0;padding:20px 20px 20px 0;">
+                @* <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li> *@
+                <li>@Html.ActionLink("Agenda", "Index", "Agenda")</li>
+                <li>@Html.ActionLink("Inspeções", "Index", "Busca Inspeção")</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<div id="modal"> @Html.Partial("~/Views/Agenda/_Manipular.cshtml")</div>
+<div class="card">
+    <div class="card-header">
+        <h2>  Filtro de busca das inspeções <small>Selecione o filtro necessário para encontrar o conjunto de inspeções desejados. Nenhum deles é obritagório.</small></h2>
+    </div>
+    <div class="card-body card-padding">
+        @Html.Partial("_CardFiltros")
+
+    </div>
+</div>
+
+<div class="col-xs-12 p-r-0 p-l-0 ">
+    <button type="button" id="btnFiltrar" onclick="filtrar(true)" class="btn btn-primary btn-lg m-b-15 waves-effect">
+        <i class="zmdi zmdi-rotate-right zmdi-hc-spin m-r-5" id="icon-filtrar" style="display:none"></i>Pesquisar Inspeções
+    </button>
+</div>
+
+<div class="col-xs-12 p-r-0 p-l-0  ">
+    <div class="card" id="card-lista-avaliacoes" style="display:none">
+        <div class="card-header">
+            <h2>  Lista de inspeções encontradas</h2>
+            <!-- Filtros necessários para dar refresh no partialView quando uma inspeção for editada-->
+            <input type="hidden" id="filtroDataInicial" value="0">
+            <input type="hidden" id="filtroDataFinal" value="0">
+            <input type="hidden" id="filtroUsuarios" value="0">
+            <input type="hidden" id="filtroUnidades" value="0">
+            <input type="hidden" id="filtroGrupos" value="0">
+        </div>
+
+        <div class="card-body" id="avaliacoes-encontradas">
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/Custom/avaliacoesBusca.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/agendaValidacoes.js"></script>
+
+
+    <script type="text/javascript" src="/Scripts/Template/bootstrap-select.js"> </script>
+
+    <script type="text/javascript">
+        $('#DataProgramada').datetimepicker({
+            format: 'DD/MM/YYYY',
+            minDate: moment(),
+            locale: 'pt-br',
+        });
+
+
+        $('#data-inicio').datetimepicker({
+            format: 'DD/MM/YYYY',
+            minDate: moment(),
+            locale: 'pt-br'
+        });
+
+
+        $('#data-fim').datetimepicker({
+            format: 'DD/MM/YYYY',
+            minDate: moment(),
+            locale: 'pt-br'
+        });
+    </script>
+}
+

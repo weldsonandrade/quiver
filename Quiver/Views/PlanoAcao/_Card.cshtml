@@ -1,0 +1,96 @@
+﻿@model Quiver.Models.PlanoAcaoCardVM
+
+<div class="col-xs-12 p-r-0 p-l-0">
+    <div class="card" id="card-planos-acao">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>
+                        Planos de ação separados por status
+                        <small>
+                            Um plano de ação é uma ferramenta para planejamento e acompanhamento de atividades. Costuma ser usado para garantir que nenhuma tarefa fora da conformidade seja deixada para trás.
+                        </small>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body m-l-30 m-r-30" id="planoAcao">
+
+            <div role="tabpanel">
+                <ul class="tab-nav" role="tablist" data-tab-color="black">
+                    <li class="active planoAeditar">
+                        <a href="#aEditar" aria-controls="aEditar" role="tab" data-toggle="tab" aria-expanded="true">A editar</a>
+                    </li>
+                    @if (Model.PlanosAcaoAtrasados != null)
+                    {
+                        <li class="planoAtrasado">
+                            <a href="#atrasado" aria-controls="atrasado" role="tab" data-toggle="tab" aria-expanded="false">Atrasado</a>
+                        </li>
+                    }
+                    <li class="planoAberto">
+                        <a href="#emAberto" aria-controls="emAberto" role="tab" data-toggle="tab" aria-expanded="false">Em aberto</a>
+                    </li>
+                    @if (Model.PlanosAcaoResolvidos != null)
+                    {
+                        <li class="planoResolvido">
+                            <a href="#resolvido" aria-controls="resolvido" role="tab" data-toggle="tab" aria-expanded="false">Resolvido</a>
+                        </li>
+                    }
+                    <li class="planoEncerrado">
+                        <a href="#encerrado" aria-controls="encerrado" role="tab" data-toggle="tab" aria-expanded="false">Encerrado</a>
+                    </li>
+                    <li class="planoCancelado">
+                        <a href="#cancelado" aria-controls="cancelado" role="tab" data-toggle="tab" aria-expanded="false">Cancelado</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="aEditar">
+                        <h4 class="m-b-30">
+                            Lista das nãos conformidades que precisam ter seu plano de ação criado.
+                        </h4>
+                        @Html.Partial("_TabelaPlanoAEditar", Model != null ? Model.PlanosAcaoAEditar : null)
+                    </div>
+
+                    @if (Model.PlanosAcaoAtrasados != null)
+                    {
+                        <div role="tabpanel" class="tab-pane" id="atrasado">
+                            <h4 class="m-b-30">
+                                Lista com os planos de ação que estão em atrasados.
+                            </h4>
+                            @Html.Partial("_TabelaPlanoAcao", Model != null ? Model.PlanosAcaoAtrasados : null)
+                        </div>
+                    }
+                    <div role="tabpanel" class="tab-pane" id="emAberto">
+                        <h4 class="m-b-30">
+                            Lista com os planos de ação que estão em aberto.
+                        </h4>
+                        @Html.Partial("_TabelaPlanoAcao", Model != null ? Model.PlanosAcaoAndamento : null)
+                    </div>
+                    @if (Model.PlanosAcaoResolvidos != null)
+                    {
+                        <div role="tabpanel" class="tab-pane " id="resolvido">
+                            <h4 class="m-b-30">
+                                Lista com os planos de ação que estão resolvidos.
+                            </h4>
+                            @Html.Partial("_TabelaPlanoAcao", Model != null ? Model.PlanosAcaoResolvidos : null)
+                        </div>
+                    }
+                    <div role="tabpanel" class="tab-pane " id="encerrado">
+                        <h4 class="m-b-30">
+                            Lista com os planos de ação que estão finalizados.
+                        </h4>
+                        @Html.Partial("_TabelaPlanoAcao", Model != null ? Model.PlanosAcaoEncerrados : null)
+                    </div>
+                    <div role="tabpanel" class="tab-pane " id="cancelado">
+                        <h4 class="m-b-30">
+                            Lista com os planos de ação que estão cancelados.
+                        </h4>
+                        @Html.Partial("_TabelaPlanoAcao", Model != null ? Model.PlanosAcaoCancelados : null)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

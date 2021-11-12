@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "E-mail confirmado";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<div class="lc-block toggled">
+    <div class="login-card-header">
+        <img src="../Content/img/quiver_logo.png" />  <h4>Quiveer</h4>
+    </div>
+    <h4>
+        Obrigado por confirmar seu email. <br/> Por favor @Html.ActionLink("Clique aqui para entrar", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    </h4>
+</div>

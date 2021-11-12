@@ -1,0 +1,47 @@
+﻿@using Quiver.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+
+<div class="lc-block toggled" style="margin-top: 12% !important;" id="l-login">
+    <div class="login-card-header">
+        <img src="../Content/img/quiver_logo.png" />  <h4>Quiver</h4>
+
+    </div>
+
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4 style="text-transform:uppercase"></h4>
+        <div class="input-group m-b-20">
+            <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+            <div class="fg-line">
+                @Html.TextBoxFor(m => m.Email, new { placeholder = "Usuário", @class = "form-control" })
+
+            </div>
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+
+        <div class="input-group m-b-20">
+            <span class="input-group-addon"><i class="zmdi zmdi-key"></i></span>
+            <div class="fg-line">
+                @Html.PasswordFor(m => m.Password, new { placeholder = "Senha", @class = "form-control" })
+
+            </div>
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+
+        @Html.ValidationSummary(true)
+
+        <div class="clearfix"></div>
+
+        <div>
+            @Html.ActionLink("Esqueceu a senha?", "ForgotPassword")
+        </div>
+
+        <button type="submit" class="btn btn-login btn-primary btn-float waves-effect waves-circle "><i class="zmdi zmdi-arrow-forward"></i></button>
+    }
+</div>

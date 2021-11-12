@@ -1,0 +1,59 @@
+﻿
+<div class="modal " id="manipularGrupoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-primary modal-lg" role="document" style="z-index: 9999999;">
+        <div class="modal-content">
+            @using (@Ajax.BeginForm("Manipular", null, new AjaxOptions() { HttpMethod = "POST", OnSuccess = "onSuccess(data)" }, new { id = "form-grupo" }))
+            {
+                @Html.ValidationSummary(true)
+
+                <input id="Id" name="Id" type="hidden" />
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Manipular o Grupo</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="isValid" value="false" />
+
+                    @* Nome do Grupo *@
+                    <div class="form-group fg-float m-b-0" id="grupo-nome">
+                        <div class="fg-line">
+                            <input id="grupo-input-nome" name="Nome" type="text" class="input-sm form-control fg-input validar" autocomplete="off"  />
+                            <label class="fg-label">Nome</label>
+                        </div>
+                        <small class="help-block" id="mensagem-erro-nome">O nome do Grupo é obrigatório.</small>
+                    </div>
+
+                    <div id="div-classificacao" class="input-group col-sm-12">
+                        <fieldset>
+                            <h4 class="m-b-0">Classificações de efetividade do grupo</h4>
+                            <small style="font-size:11px" class="m-b-10">Defina os padrões de qualidade de acordo com o percentual dos pontos obtidos nas inspeções finalizadas com esse grupo.</small>
+                            <div id="divListaClassificacao">
+                                <table id="tabelaClassificacao" class="table table-striped table-responsive table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th data-column-id="descricao">Descrição</th>
+                                            <th data-column-id="inicioIntervalo">De</th>
+                                            <th data-column-id="fimIntervalo">Até</th>
+                                            <th data-column-id="corIntervalo">Cor</th>
+                                            <th data-column-id="btnAdicionar">
+                                                <button type="button" class="btn btn-default btn-xs waves-effect" id="btnAddClassificacao" onclick="gerarNovaLinhaClassificacao();">Adicionar</button>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyClassificacao">
+                                    </tbody>
+                                </table>
+                                <div id="div-msgvalidacao">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="btnSalvarGrupo" class="btn btn-primary">Salvar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

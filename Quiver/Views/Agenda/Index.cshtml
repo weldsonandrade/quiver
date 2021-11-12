@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Quiveer - Agenda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content-header">
+    <div class="row">
+        <div class="col-xs-8 ">
+            <h1 class="titulo-opcao">
+                <i class="zmdi zmdi-calendar"></i> Calendário de Inspeções
+            </h1>
+        </div>
+        <div class="col-xs-4 text-right">
+            <ol class="breadcrumb" style="border-bottom:none;margin-bottom:0;padding:20px 20px 20px 0;">
+                <li>@Html.ActionLink("Agenda", "Index", "Agenda")</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div id="modal">@Html.Partial("_Manipular")</div>
+    @Html.Partial("_Card") 
+</section>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/Custom/agenda.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/agendaValidacoes.js"></script>
+
+
+    <script type="text/javascript">
+        $('#DataProgramada').datetimepicker({
+            format: 'DD/MM/YYYY',
+            minDate: moment(),
+            locale: 'pt-br',
+        });
+
+
+        $('#data-inicio').datetimepicker({
+            format: 'DD/MM/YYYY',
+            minDate: moment(),
+            locale: 'pt-br'
+        });
+
+
+        $('#data-fim').datetimepicker({
+            format: 'DD/MM/YYYY',
+            minDate: moment(),
+            locale: 'pt-br'
+        });
+    </script>
+}
+

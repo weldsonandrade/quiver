@@ -1,0 +1,55 @@
+﻿<aside id="sidebar" class="sidebar c-overflow">
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+
+    <ul class="main-menu">
+        @if (User.IsInRole("Administrador"))
+        {
+            <li id="menu_empresas">
+                <a href="@Url.Action("Index", "Empresa")"><i class="zmdi zmdi-city"></i>Empresas</a>
+            </li>
+        }
+        else
+        {
+            <li id="menu_agenda">
+                <a href="@Url.Action("Index", "Agenda")"><i class=" zmdi zmdi-calendar"></i>Agenda</a>
+            </li>
+
+            <li id="menu_plano">
+                <a href="@Url.Action("Index", "PlanoAcao")"><i class="zmdi zmdi-shield-check"></i>Planos de Ação</a>
+            </li>
+
+            <li id="menu_unidade">
+                <a href="@Url.Action("Index", "Unidade")"><i class="zmdi zmdi-store"></i>Locais</a>
+            </li>
+
+            <li id="menu_usuarios">
+                <a href="@Url.Action("Index", "Usuario")"><i class="zmdi zmdi-accounts-alt"></i>Usuários</a>
+            </li>
+
+            <li id="menu_grupo">
+                <a href="@Url.Action("Index", "Grupo")"><i class="zmdi zmdi-dot-circle-alt"></i>Grupos</a>
+            </li>
+
+            <li id="menu_questionarios">
+                <a href="@Url.Action("Index", "Questionario")"><i class="zmdi zmdi-assignment-o"></i>Formulários</a>
+
+            </li>
+
+            <li class="sub-menu" id="menu_relatorios">
+                <a href=""><i class="zmdi zmdi-eye"></i>Relatórios</a>
+                <ul>
+                    <li><a id="rel_rank_geral" href="@Url.Action("RankingGeral", "Relatorio")"><i class="zmdi zmdi-equalizer p-r-5"></i>Ranking </a></li>
+                    @*<li> <a id="rel_evolutivo_por_unidade" href="@Url.Action("EvolutivoPorUnidade", "Relatorio")"><i class="zmdi zmdi-trending-up p-r-5"></i>Evolutivo</a> </li>*@
+                    <li> <a id="rel_evolutivo_geral" href="@Url.Action("EvolutivoGeral", "Relatorio")"><i class="zmdi zmdi-trending-up p-r-5"></i>Evolutivo</a> </li>
+                </ul>
+            </li>
+        }
+    </ul>
+   
+   
+
+</aside>
+

@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Quiveer - Grupo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content-header">
+    <div class="row">
+        <div class="col-xs-8 ">
+            <h1 class="titulo-opcao">
+                <i class="zmdi zmdi-dot-circle-alt"></i> Controle dos Grupos
+            </h1>
+        </div>
+        <div class="col-xs-4 text-right ">
+            <ol class="breadcrumb" style="border-bottom:none;margin-bottom:0;padding:20px 20px 20px 0;">
+               @* <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li> *@
+                <li>@Html.ActionLink("Grupos", "Index", "Grupo")</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="content" onload="selecionarMenu()">
+    <div id="modal">@Html.Partial("_Manipular")</div>
+    <div id="modal">@Html.Partial("_FormulariosGrupo")</div>
+    @Html.Partial("_Card")
+</section>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/Custom/listadinamica.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/grupo/grupos.js"></script>
+
+    @Scripts.Render("~/bundles/colorselector")
+    @Styles.Render("~/Content/colorselector")
+    <script type="text/javascript">
+        criarValidacaoInputs();
+        validarTodosInputsGrupo();
+
+        var coresArray = @Html.Raw(
+        Json.Encode(
+            ((IEnumerable<SelectListItem>)ViewBag.CoresClassificacao).Select(i => i.Value)
+        ));
+        var todasAsCores =  @Html.Raw(Json.Encode(((IEnumerable<SelectListItem>)ViewBag.CoresClassificacao)));
+    </script>
+}
+

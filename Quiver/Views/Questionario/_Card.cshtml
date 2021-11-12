@@ -1,0 +1,16 @@
+﻿<div class="card animated fadeIn">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <h2> Lista de Formulários<small>Formulários podem ser 100% customizados com itens de diversos tipos (objetivos, subjetivos ou múltipla escolha) e pontuações diferentes. Um formulário pode ser agregado a diversos grupos .</small></h2>
+            </div>
+            <div class="col-md-4 text-right">
+                <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" onclick="adicionarQuestionario();">
+                    <i class="zmdi zmdi-plus" style="margin-right:5px"></i>Novo Formulário
+                </button>
+            </div>
+        </div>
+    </div>
+    @Html.Action("Tabela")
+</div>
+

@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{02B933AF-B564-4C29-AC06-179282CFD03A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Quiver.Service</RootNamespace>
+    <AssemblyName>Quiver.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementation\ConfiguracaoService.cs" />
+    <Compile Include="Implementation\EmpresaService.cs" />
+    <Compile Include="Implementation\GrupoService.cs" />
+    <Compile Include="Implementation\FormularioService.cs" />
+    <Compile Include="Implementation\NotificacaoService.cs" />
+    <Compile Include="Implementation\PlanoAcaoService.cs" />
+    <Compile Include="Implementation\UsuarioService.cs" />
+    <Compile Include="Interfaces\IAgendaService.cs" />
+    <Compile Include="Interfaces\IConfiguracaoService.cs" />
+    <Compile Include="Interfaces\IEmpresaService.cs" />
+    <Compile Include="Interfaces\IFormularioService.cs" />
+    <Compile Include="Interfaces\IGrupoService.cs" />
+    <Compile Include="Interfaces\INotificacaoService.cs" />
+    <Compile Include="Interfaces\IPlanoAcaoService.cs" />
+    <Compile Include="Interfaces\IUnidadeService.cs" />
+    <Compile Include="Interfaces\IUsuarioService.cs" />
+    <Compile Include="Mappers\AgendaMapper.cs" />
+    <Compile Include="Mappers\ConfiguracaoMapper.cs" />
+    <Compile Include="Mappers\EmpresaMapper.cs" />
+    <Compile Include="Mappers\FormularioMapper.cs" />
+    <Compile Include="Mappers\GrupoMapper.cs" />
+    <Compile Include="Mappers\NotificacaoMapper.cs" />
+    <Compile Include="Mappers\PlanoAcaoMapper.cs" />
+    <Compile Include="Mappers\UnidadeMapper.cs" />
+    <Compile Include="Mappers\UsuarioMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Implementation\AgendaService.cs" />
+    <Compile Include="Implementation\UnidadeService.cs" />
+    <Compile Include="Resources\Exception.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Exception.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Quiver.Common\Quiver.Common.csproj">
+      <Project>{28efe580-42fe-41d8-8fdc-d675e0ed79f3}</Project>
+      <Name>Quiver.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Quiver.Core\Quiver.Core.csproj">
+      <Project>{2537ab92-3a6b-4fd2-9925-a00f1a8968e9}</Project>
+      <Name>Quiver.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Quiver.Data\Quiver.Data.csproj">
+      <Project>{71CD82FE-4B95-48A6-B68B-0806E53D3571}</Project>
+      <Name>Quiver.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Quiver.DTO\Quiver.DTO.csproj">
+      <Project>{5db7bf88-12ad-4357-8918-03aaf5487fe7}</Project>
+      <Name>Quiver.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Quiver.Infrastructure.Identity\Quiver.Infrastructure.Identity.csproj">
+      <Project>{C096D4DF-92CF-4705-97C4-BE81C28C8034}</Project>
+      <Name>Quiver.Infrastructure.Identity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Exception.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Exception.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
