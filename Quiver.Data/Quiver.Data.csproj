@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{71CD82FE-4B95-48A6-B68B-0806E53D3571}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Quiver.Data</RootNamespace>
+    <AssemblyName>Quiver.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces\IAvaliacaoQuestionarioGrupoRepository.cs" />
+    <Compile Include="Interfaces\IAvaliacaoRepository.cs" />
+    <Compile Include="Interfaces\IConfiguracaoRepository.cs" />
+    <Compile Include="Interfaces\IEmpresaRepository.cs" />
+    <Compile Include="Interfaces\IGrupoRepository.cs" />
+    <Compile Include="Interfaces\INotificacaoRepository.cs" />
+    <Compile Include="Interfaces\IPerfilRepository.cs" />
+    <Compile Include="Interfaces\IPlanoAcaoRepository.cs" />
+    <Compile Include="Interfaces\IQuestionarioGrupoRepository.cs" />
+    <Compile Include="Interfaces\IQuestionarioRepository.cs" />
+    <Compile Include="Interfaces\IQuiverDbContext.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnidadeRepository.cs" />
+    <Compile Include="Interfaces\IUnityOfWork.cs" />
+    <Compile Include="Interfaces\IUsuarioRepository.cs" />
+    <Compile Include="Migrations\201602251837572_CreateDatabase.cs" />
+    <Compile Include="Migrations\201602251837572_CreateDatabase.Designer.cs">
+      <DependentUpon>201602251837572_CreateDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603030033079_CorClassificacaoAdicionada.cs" />
+    <Compile Include="Migrations\201603030033079_CorClassificacaoAdicionada.Designer.cs">
+      <DependentUpon>201603030033079_CorClassificacaoAdicionada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603232320576_ColunasExcluidosGruposQuestionarios.cs" />
+    <Compile Include="Migrations\201603232320576_ColunasExcluidosGruposQuestionarios.Designer.cs">
+      <DependentUpon>201603232320576_ColunasExcluidosGruposQuestionarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604062055470_LimiteDeLicencas.cs" />
+    <Compile Include="Migrations\201604062055470_LimiteDeLicencas.Designer.cs">
+      <DependentUpon>201604062055470_LimiteDeLicencas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604291412282_NomeUsuario.cs" />
+    <Compile Include="Migrations\201604291412282_NomeUsuario.Designer.cs">
+      <DependentUpon>201604291412282_NomeUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605041407029_Flag_Agendado.cs" />
+    <Compile Include="Migrations\201605041407029_Flag_Agendado.Designer.cs">
+      <DependentUpon>201605041407029_Flag_Agendado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606010014367_AddModelNotificacao.cs" />
+    <Compile Include="Migrations\201606010014367_AddModelNotificacao.Designer.cs">
+      <DependentUpon>201606010014367_AddModelNotificacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612190121483_PlanoAcao.cs" />
+    <Compile Include="Migrations\201612190121483_PlanoAcao.Designer.cs">
+      <DependentUpon>201612190121483_PlanoAcao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707122317147_PlanoAcaoHistoricoMensagem.cs" />
+    <Compile Include="Migrations\201707122317147_PlanoAcaoHistoricoMensagem.Designer.cs">
+      <DependentUpon>201707122317147_PlanoAcaoHistoricoMensagem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708222316137_LimitacaoNoNomeDoUsuario.cs" />
+    <Compile Include="Migrations\201708222316137_LimitacaoNoNomeDoUsuario.Designer.cs">
+      <DependentUpon>201708222316137_LimitacaoNoNomeDoUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709070100421_AddTableConfiguracao.cs" />
+    <Compile Include="Migrations\201709070100421_AddTableConfiguracao.Designer.cs">
+      <DependentUpon>201709070100421_AddTableConfiguracao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710270028285_ChangeRelationshiptQuestionarioGrupoToManyToMany.cs" />
+    <Compile Include="Migrations\201710270028285_ChangeRelationshiptQuestionarioGrupoToManyToMany.Designer.cs">
+      <DependentUpon>201710270028285_ChangeRelationshiptQuestionarioGrupoToManyToMany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803060006399_QuestionarioEmpresaRelationship.cs" />
+    <Compile Include="Migrations\201803060006399_QuestionarioEmpresaRelationship.Designer.cs">
+      <DependentUpon>201803060006399_QuestionarioEmpresaRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803060027339_ObrigatoriedadeIdEmpresaEmQuestionario.cs" />
+    <Compile Include="Migrations\201803060027339_ObrigatoriedadeIdEmpresaEmQuestionario.Designer.cs">
+      <DependentUpon>201803060027339_ObrigatoriedadeIdEmpresaEmQuestionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="QuiverDbContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AvaliacaoQuestionarioGrupoRepository.cs" />
+    <Compile Include="Repository\AvaliacaoRepository.cs" />
+    <Compile Include="Repository\ConfiguracaoRepository.cs" />
+    <Compile Include="Repository\EmpresaRepository.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\GrupoRepository.cs" />
+    <Compile Include="Repository\NotificacaoRepository.cs" />
+    <Compile Include="Repository\PerfilRepository.cs" />
+    <Compile Include="Repository\PlanoAcaoRepository.cs" />
+    <Compile Include="Repository\QuestionarioGrupoRepository.cs" />
+    <Compile Include="Repository\QuestionarioRepository.cs" />
+    <Compile Include="Repository\UnidadeRepository.cs" />
+    <Compile Include="Repository\UnitOfWork.cs" />
+    <Compile Include="Repository\UsuarioRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602251837572_CreateDatabase.resx">
+      <DependentUpon>201602251837572_CreateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603030033079_CorClassificacaoAdicionada.resx">
+      <DependentUpon>201603030033079_CorClassificacaoAdicionada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603232320576_ColunasExcluidosGruposQuestionarios.resx">
+      <DependentUpon>201603232320576_ColunasExcluidosGruposQuestionarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604062055470_LimiteDeLicencas.resx">
+      <DependentUpon>201604062055470_LimiteDeLicencas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604291412282_NomeUsuario.resx">
+      <DependentUpon>201604291412282_NomeUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605041407029_Flag_Agendado.resx">
+      <DependentUpon>201605041407029_Flag_Agendado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606010014367_AddModelNotificacao.resx">
+      <DependentUpon>201606010014367_AddModelNotificacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612190121483_PlanoAcao.resx">
+      <DependentUpon>201612190121483_PlanoAcao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707122317147_PlanoAcaoHistoricoMensagem.resx">
+      <DependentUpon>201707122317147_PlanoAcaoHistoricoMensagem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708222316137_LimitacaoNoNomeDoUsuario.resx">
+      <DependentUpon>201708222316137_LimitacaoNoNomeDoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709070100421_AddTableConfiguracao.resx">
+      <DependentUpon>201709070100421_AddTableConfiguracao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710270028285_ChangeRelationshiptQuestionarioGrupoToManyToMany.resx">
+      <DependentUpon>201710270028285_ChangeRelationshiptQuestionarioGrupoToManyToMany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803060006399_QuestionarioEmpresaRelationship.resx">
+      <DependentUpon>201803060006399_QuestionarioEmpresaRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803060027339_ObrigatoriedadeIdEmpresaEmQuestionario.resx">
+      <DependentUpon>201803060027339_ObrigatoriedadeIdEmpresaEmQuestionario.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Quiver.Common\Quiver.Common.csproj">
+      <Project>{28efe580-42fe-41d8-8fdc-d675e0ed79f3}</Project>
+      <Name>Quiver.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Quiver.Core\Quiver.Core.csproj">
+      <Project>{2537ab92-3a6b-4fd2-9925-a00f1a8968e9}</Project>
+      <Name>Quiver.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

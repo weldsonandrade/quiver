@@ -1,0 +1,35 @@
+﻿
+<div class="modal " id="manipularGrupoFormulariosModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-primary" role="document" style="z-index: 9999999;">
+        <div class="modal-content">
+            @using (@Ajax.BeginForm("ManipularFormulariosGrupo", null, new AjaxOptions() { HttpMethod = "POST", OnSuccess = "onSuccessManipularFormulariosGrupo(data)" }, new { id = "form-grupo-formularios" }))
+            {
+                @Html.ValidationSummary(true)
+
+                <input id="GrupoId" name="Id" type="hidden" />
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Editar ligações do grupo e formulários</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="isValid" value="false" />
+
+                    @* Nome do Grupo *@
+                    <div class="form-group fg-float m-b-0" id="grupo-nome">
+                        <h4 id="nome-grupo"></h4>
+
+                        <small style="font-size:13px" class="m-b-10">Quando tiver uma inspeção com esse grupo o inspetor irá responder os formulários selecionados.</small>
+
+                        <p class="c-black f-500 m-b-20 m-t-20">Lista formulários</p>
+
+                        <div id="lista-formularios"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="btnSalvarFormulariosGrupo" class="btn btn-primary">Salvar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

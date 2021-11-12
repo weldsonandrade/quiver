@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Quiver.Models.RankingGeralVM>
+
+
+
+
+@if (@Model.Count()  > 0)
+{
+    <div id="ranking-tabela" tabindex="0" style="overflow: hidden; outline: none;">
+        <div class="table-responsive" id="tabela-ranking-usuarios" tabindex="0" style="overflow: hidden; outline: none;">
+            <table id="data-table-command" class="table tabela-ranking-dashboard table-striped table-vmiddle" aria-busy="false">
+                <thead>
+                    <tr>
+
+                        <th data-column-id="posicao">Posição</th>
+                        <th data-column-id="tipoRanking" id="categoria-Ranking">Usuário</th>
+
+                        @if (@ViewBag.tipo == "Quantidade")
+                        {
+                            <th data-column-id="qtdAvaliacoes" data-formatter="quantidade" >Qtd de inspeções</th>
+    <th data-column-id="efetividade" data-formatter="efetividade2">Efetividade</th>
+                        }
+                        else
+                        {
+                            <th data-column-id="qtdAvaliacoes" data-type="numeric" >Qtd de inspeções</th>
+    <th data-column-id="efetividade" data-formatter="efetividade" >Efetividade</th>
+                        }
+                       
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var row in @Model)
+                    {
+                        <tr>
+                            <td>@row.Posicao</td>
+                            <td>@row.Categoria</td>
+                            <td>@row.QtdAvaliacoes</td>
+                            <td>@row.Efetividade</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row m-l-0 m-r-0" > 
+        <div class="alert alert-info alert-dismissible col-md-12" role="alert">
+            Nenhum usuário cadastrado.
+        </div>
+    </div>
+}

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Login - Quiveer</title>
+    <link href="~/Content/img/favicon.jpg" rel="shortcut icon" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    @Styles.Render("~/Content/login")
+
+    <link href="~/Content/template/app.min.1.css" rel="stylesheet">
+    <link href="~/Content/template/app.min.2.css" rel="stylesheet">
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="login-content">
+    <div>
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/login")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

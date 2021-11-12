@@ -1,0 +1,82 @@
+﻿@using Microsoft.AspNet.Identity
+
+
+<header id="header" class="clearfix" data-current-skin="blue">
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/signalR")
+    <script type="text/javascript" src="~/Scripts/Custom/header.js"></script>
+    <input id="hiddenUserId" type="hidden" value="@User.Identity.GetUserId()" />
+    <input id="hiddenUrlWebAPI" type="hidden" value="@System.Configuration.ConfigurationManager.AppSettings["UrlWebAPI"]" />
+
+    <ul class="header-inner">
+        <li id="menu-trigger" data-trigger="#sidebar">
+            <div class="line-wrap">
+                <div class="line top"></div>
+                <div class="line center"></div>
+                <div class="line bottom"></div>
+            </div>
+        </li>
+
+        <li class="logo hidden-xs">
+            <a href=@Url.Action("Index","Agenda") style="display: -webkit-inline-box;"><img src="~/Content/img/quiver_logo.png" style="max-height: 50px; margin-top: -15px;" /> <h3 style="color: white;margin-top:0;padding-left:3px;">Quiveer</h3> </a>
+        </li>
+
+        <li class="pull-right">
+            <ul class="top-menu">
+                <li id="toggle-width">
+                    <div class="toggle-switch">
+                        <input id="tw-switch" type="checkbox" hidden="hidden">
+                        <label for="tw-switch" class="ts-helper"></label>
+                    </div>
+                </li>
+
+
+                @* NOTIFICACOES*@
+                <li class="dropdown notifica">
+                    <a data-toggle="dropdown" onclick="carregarNotificacoes()">
+                        <i class="tm-icon zmdi zmdi-globe"></i>
+                        <!-- QUANTIDADE DE NOTIFICACOES NAO LIDAS -->
+                        <i class="tmn-counts" id="qtdNaoLida" style="display:none"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg pull-right" id="divNotificacoes">
+                    </div>
+                </li>
+
+                @* TROCAR SENHA E SAIR *@
+                <li class="dropdown">
+
+                    <a data-toggle="dropdown" class="tm-settings" href="">
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        <ul class="dropdown-menu dm-icon pull-right">
+                            <li>
+                                <a href="#" onclick="changePassword()"><i class="zmdi zmdi-key"></i> Trocar senha</a>
+                            </li>
+
+                            <li>
+
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()"><i class="zmdi zmdi-power"></i> Sair</a>
+
+                            </li>
+                        </ul>
+                    }
+                </li>
+
+
+            </ul>
+        </li>
+    </ul>
+
+
+    <!-- Top Search Content -->
+    <div id="top-search-wrap">
+        <div class="tsw-inner">
+            <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
+            <input type="text">
+        </div>
+    </div>
+</header>

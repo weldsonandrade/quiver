@@ -1,0 +1,57 @@
+﻿<div class="modal" id="myEmpresaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-primary modal-sm" role="document" style="z-index: 9999999;">
+        <div class="modal-content">
+            @using (Ajax.BeginForm("Manipular", "Empresa", null, new AjaxOptions() { HttpMethod = "POST", OnSuccess = "onSuccess(data)" }, new { id = "form-empresa" }))
+            {
+                <input id="Id" name="Id" type="hidden" />
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Manipular empresa</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.ValidationSummary(true)
+
+                    @* CNPJ *@
+                    <div class="form-group fg-float" id="empresa-cnpj">
+                        <div class="fg-line">
+                            <input type="text" class="input-sm form-control fg-input" id="empresa-input-cnpj" name="Cnpj" autocomplete="off" onkeyup="validarCnpj()" />
+                            <label class="fg-label">CNPJ</label>
+                        </div>
+                        <small class="help-block" id="mensagem-erro-cnpj">CNPJ é obrigatório.</small>
+                    </div>
+
+                    @* Nome *@
+                    <div class="form-group fg-float" id="empresa-nome">
+                        <div class="fg-line">
+                            <input type="text" class="input-sm form-control fg-input" id="empresa-input-nome" name="Nome" autocomplete="off" onkeyup="validarNome()" />
+                            <label class="fg-label">Nome</label>
+                        </div>
+                        <small class="help-block" id="mensagem-erro-nome">Nome é obrigatório.</small>
+                    </div>
+
+                    @* Situação *@
+                    <div class="checkbox m-b-10 col-md-12" id="empresa-situacao">
+                        <label class="checkbox checkbox-inline  m-t-10 m-l-10">
+                            <input type="checkbox" class="checkMes" id="empresa-input-situacao" name="Situacao" onclick="$(this).val(this.checked ? 'true' : 'false'); habilitarSalvar();"><i class="input-helper"></i> Ativa?
+                        </label>
+                    </div>
+
+                    @* Limite de Licenças *@
+                    <div class="form-group fg-float" id="empresa-limite-licencas">
+                        <div class="fg-line">
+                            <input type="text" class="input-sm form-control fg-input" id="empresa-input-limite-licencas" name="LimiteLicencas" autocomplete="off" onkeyup="validarNome()" />
+                            <label class="fg-label">Limite de Licenças</label>
+                        </div>
+                        <small class="help-block" id="mensagem-erro-limite-licencas">Limite de Licenças é obrigatório.</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="salvar-empresa" onclick="validarTodosCampos()" class="btn btn-primary" disabled>Salvar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,36 @@
+﻿@model  IEnumerable<Quiver.Models.AvaliacaoVM>
+
+
+    <div id="avaliacoes-tabela" tabindex="0" style="overflow: hidden; outline: none;">
+        <div class="table-responsive" id="tabela-avaliacoes" tabindex="0" style="overflow: hidden; outline: none;">
+            <table id="data-table-command" class="table tabela-avaliacoes-dashboard table-striped table-vmiddle" aria-busy="false">
+                <thead>
+                    <tr>
+                        <th data-column-id="id" data-type="numeric" data-visible="false">ID</th>
+                        <th data-column-id="rotulo">Rotulo</th>
+                        <th data-column-id="Inspetor" data-formatter="Inspetor">Inspetor</th>
+                        <th data-column-id="Unidade">Unidade</th>
+                        <th data-column-id="Grupo">Grupo</th>
+                        <th data-column-id="dataProgramada" data-formatter="data">Data Programada</th>
+                        <th data-column-id="commands" data-formatter="commands" data-sortable="false">Opção</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var row in @Model)
+                    {
+                        <tr>
+                            <td>@row.Id</td>
+                            <td>@row.RotuloCalendario</td>
+                            <td>@row.NomeUsuario</td>
+                            <td>@row.NomeUnidade</td>
+                            <td>@row.NomeGrupo</td>
+                            <td>@row.DataProgramada</td>
+                            <td></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+

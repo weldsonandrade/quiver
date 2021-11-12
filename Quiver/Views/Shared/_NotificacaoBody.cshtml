@@ -1,0 +1,90 @@
+﻿@model Quiver.Models.HeaderViewModel
+
+
+
+<div class="listview" id="notifications">
+
+    @{string tituloNotificacoes = (@Model.Notificacoes.Count() > 0) ? "Notificações" : "Nenhuma notificação";}
+    <div class="lv-header m-b-0 p-10">
+        @tituloNotificacoes
+    </div>
+
+
+    <div class="text-center" id="divNotificacaoLoading">
+        <i class="zmdi zmdi-rotate-right zmdi-hc-spin zmdi-hc-2x"></i>
+        <div class="lv-header m-b-0 p-10">
+            CARREGANDO
+        </div>
+    </div>
+
+    <div class="lv-body">
+
+        @foreach (var notificacao in @Model.Notificacoes.Take(10))
+        {
+            switch (notificacao.Tipo)
+            {
+                case Quiver.DTO.Enum.TipoNotificacao.AVALIADO:
+                    <a class="lv-item" onclick="telaAvaliado(@notificacao.Avaliacao.Id)">
+                        <div class="media">
+                            <div class="pull-left  p-r-0" style="min-width:27px">
+                                @if (notificacao.Avaliacao.Conforme == false)
+                                {
+                                    <i class="zmdi zmdi-alert-triangle c-red" style="font-size:23px;margin-right:3px"></i>
+                                 @*<i class="zmdi" style="background-color: #1B5E20; min-height: 20px; min-width: 20px; margin-right: 5px"></i>*@
+                                }
+                                <br />
+                                 @if (notificacao.Avaliacao.Agendada == false)
+                                 {
+                                   <i class="zmdi zmdi-smartphone-iphone c-black" style="font-size:28px;margin-left:3px;margin-right: 3px;"></i>
+                                 }
+                            </div>
+                            <div class="media-body">
+                                <span class="lv-small">
+                                    @{ var usuario = notificacao.Avaliacao.NomeUsuario ?? notificacao.Avaliacao.EmailUsuario; }
+                                    Usuário <strong>@usuario </strong>  finalizou a inspeção <strong>  @notificacao.Avaliacao.RotuloCalendario </strong>  no local
+                                    <strong>  @notificacao.Avaliacao.Unidade.Nome </strong>.
+                                </span>
+
+                                <div class="col-md-12 p-l-0 p-r-0 text-right">
+                                    <span class="lv-small c-black m-t-5 ">
+                                        <i class="zmdi zmdi-time p-r-5"></i>Em @notificacao.Data.Day/@notificacao.Data.Month/@notificacao.Data.Year   às @notificacao.Data.ToShortTimeString()
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    break;
+
+                case Quiver.DTO.Enum.TipoNotificacao.ATRASADO:
+                <a class="lv-item">
+                    <div class="media">
+                        <div class="pull-left  p-r-5">
+                            <i class="zmdi" style="background-color:#d33; min-height: 15px; min-width: 15px; margin-right: 5px"></i>
+                        </div>
+                        <div class="media-body">
+                            <span class="lv-small">
+                                A inspeção <strong> @notificacao.Avaliacao.RotuloCalendario </strong>criada para que o usuário <strong> @notificacao.UsuarioNotificado.Nome </strong> aplique na unidade <strong> @notificacao.Avaliacao.Unidade.Nome </strong> se encontra atrasada.
+                            </span>
+
+                            <div class="col-md-8 p-l-0 p-r-0">
+                                <span class="lv-small c-black m-t-5 ">
+                                    <i class="zmdi zmdi-time p-r-5"></i>Em @notificacao.Data.ToShortDateString() às @notificacao.Data.ToShortTimeString()
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </a>
+                    break;
+            }
+        }
+
+    </div>
+  
+  
+    @if (@Model.Notificacoes.Count() > 0)
+    {
+        <a class="lv-footer m-t-0" style="font-size:15px;" href="@Url.Action("Notificacoes", "Header")">Ver todas as notificações</a>
+    }
+    
+</div>

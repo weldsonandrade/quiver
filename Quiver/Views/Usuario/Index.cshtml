@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Quiveer - Usuários";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="row">
+        <div class="col-xs-8 ">
+            <h1 class="titulo-opcao">
+                <i class="zmdi zmdi-accounts-alt"></i> Controle dos Usuários
+            </h1>
+        </div>
+        <div class="col-xs-4 text-right ">
+            <ol class="breadcrumb" style="border-bottom:none;margin-bottom:0;padding:20px 20px 20px 0;">
+                @*<li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li> *@
+                <li>@Html.ActionLink("Usuários", "Index", "Usuario")</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="content" onload="selecionarMenu()">
+    <div id="modal">@Html.Partial("_Manipular")</div>
+    @Html.Partial("_Card")
+</section>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/Custom/usuario/usuarios.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/usuario/listarUsuarios.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/usuario/validacoesUsuario.js"></script>
+}
+
+
+
+

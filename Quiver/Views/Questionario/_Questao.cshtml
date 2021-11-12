@@ -1,0 +1,441 @@
+﻿@model List<Quiver.Models.QuestaoVM>
+
+<div class="card " id="card-questao">
+    <div class="card-header">
+        <h2> Adicionar item ao formulário </h2>
+    </div>
+    <div class="card-body card-padding row">
+
+        @* Titulo do Item *@
+        <div class="form-group fg-float col-md-12 col-lg-7  m-b-10" id="item-Descricao">
+            <div class="fg-line">
+                <input type="text" id="txtDescricao" name="txtDescricao" value="" class="input-sm form-control fg-input" onkeyup="validarDescricaoQuestao()" onfocusout="validarDescricaoQuestao()" />
+
+                @*@Html.TextBoxFor(m => m., new { @class = "input-sm form-control fg-input", @id = "unidade-input-nome", @autocomplete = "off", @onkeyup = "validarNome()" })*@
+                <label class="fg-label">Título do Item</label>
+            </div>
+            <small class="help-block" id="titulo-questao-invalida">O título do item é obrigatório.</small>
+        </div>
+
+        @* Opções do Item *@
+        <div class="col-md-5 " style="margin-top:-10px">
+            <small>Opções do item</small>
+            <div class="row">
+                <div class="checkbox col-md-12 ">
+                    <label>
+                        <input type="checkbox" value="" id="chkExigeResposta">
+                        <i class="input-helper"></i>
+                        Exige Resposta
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        @* Tipo do Item *@
+        <div class="radio col-md-7 opcoes-alternativas m-t-0">
+            <small>Tipo do Item</small>
+            <div class="area-tipo-questao">
+
+                <div class="col-md-3 p-t-10 p-l-0">
+                    <label>
+                        <input type="radio" name="sample" value="Subjetiva" checked id="questao-subjetiva" onclick="showTipo(this.id)">
+                        <i class="input-helper"></i>
+                        Subjetivo
+                    </label>
+                </div>
+                <div class="col-md-4 p-t-10 p-l-0">
+                    <label>
+                        <input type="radio" name="sample" value="ObjetivaMultiplaEscolha" id="questao-multipla" onclick="showTipo(this.id)">
+                        <i class="input-helper"></i>
+                        Múltipla escolha
+                    </label>
+                </div>
+                <div class="col-md-5 p-t-10 p-l-0">
+                    <label>
+                        <input type="radio" name="sample" value="ObjetivaUnicaEscolha" id="questao-objetiva" onclick="showTipo(this.id)">
+                        <i class="input-helper"></i>
+                        Objetivo
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div id="multipla-ou-objetiva" class="col-md-12 p-b-10 p-t-10" style="display:none;">
+            <div id="alternativas-container" class="droppable">
+                <small>Lista de alternativas</small>
+                @Html.Hidden("alternativasCounter", 0)
+            </div>
+            <button type="button" class="btn btn-success btn-xs waves-effect m-l-0" data-toggle="modal" style="margin-top:10px" id="btnAddAlternativa" onclick="gerarNovaLinhaAlternativa();">
+                <i class="zmdi zmdi-plus" style="margin-right:5px"></i>Adicionar alternativa
+            </button>
+        </div>
+        <div class="col=md-12" id="objetiva" style="display:none"></div>
+
+        <div class="col-md-12 text-right">
+            <button type="button" id="btn-add-questao" class="btn btn-success waves-effect" data-toggle="modal" onclick="validarQuestao();">
+                <i class="zmdi zmdi-plus" style="margin-right:5px"></i>Adicionar ao formulário
+            </button>
+            <button type="button" class="btn btn-danger waves-effect" data-toggle="modal" onclick="limparQuestionario();">
+                Limpar campos
+            </button>
+        </div>
+
+        @*<div class="row" style="padding-top:10px">
+
+                <div class="col-md-12">
+                    <div class="input-group form-group m-b-0">
+                        <span class="input-group-addon">Título do item</span>
+                        <div class="fg-line">
+                            <input type="text" id="txtDescricao" name="txtDescricao" value="" placeholder="Descrição" class="form-control" onkeyup="validarDescricaoQuestao()" onfocusout="validarDescricaoQuestao()" />
+                        </div>
+                    </div>
+                    <div id="titulo-questao-invalida" style="display:inline"><small class="help-block" style="color: #f6675d">Titulo do item é obrigatório.</small></div>
+                </div>
+
+            </div>*@
+
+        @*<div class="row m-t-10">
+                <div class="radio col-md-7 opcoes-alternativas m-t-0">
+                    <span style="padding:5px 0px">Tipo</span>
+                    <div class="area-tipo-questao">
+
+                        <div class="col-md-3 p-t-10 p-l-0">
+                            <label>
+                                <input type="radio" name="sample" value="Subjetiva" checked id="questao-subjetiva" onclick="showTipo(this.id)">
+                                <i class="input-helper"></i>
+                                Subjetivo
+                            </label>
+                        </div>
+                        <div class="col-md-4 p-t-10 p-l-0">
+                            <label>
+                                <input type="radio" name="sample" value="ObjetivaMultiplaEscolha" id="questao-multipla" onclick="showTipo(this.id)">
+                                <i class="input-helper"></i>
+                                Múltipla escolha
+                            </label>
+                        </div>
+                        <div class="col-md-5 p-t-10 p-l-0">
+                            <label>
+                                <input type="radio" name="sample" value="ObjetivaUnicaEscolha" id="questao-objetiva" onclick="showTipo(this.id)">
+                                <i class="input-helper"></i>
+                                Objetivo
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <span style="padding:5px 0px">Opções do item</span>
+                    <div class="row">
+                        <div class="checkbox col-md-6  m-t-10 ">
+                            <label>
+                                <input type="checkbox" value="" id="chkExigeJustificativa">
+                                <i class="input-helper"></i>
+                                Exige Justificativa
+                            </label>
+                        </div>
+
+
+                        <div class="checkbox col-md-6  m-t-10">
+                            <label>
+                                <input type="checkbox" value="" id="chkExigeResposta">
+                                <i class="input-helper"></i>
+                                Exige Resposta
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>*@
+
+    </div>
+</div>
+
+
+<div class="card animated fadeIn " id="cartao-itens" style="display:none">
+    <div class="card-header p-b-0">
+        <div class="row">
+            <h2 class="col-xs-12 m-b-10">Itens do formulário <small> Esses são os itens que terão quer ser respondidos pelos colaboradores em seus smartphones no momento da inspeção.</small></h2>
+
+
+            <div class="col-md-12 col-xs-12 col-lg-3 m-b-5 text-right">
+                <div class="dados-avaliacoes dados-avaliacoes-pequeno dados-marron z-depth-1 p-t-5 p-b-5">
+                    <small>Quantidade de itens</small>
+                    <h2 class="m-0 f-400" id="total-questoes"></h2>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-xs-12 col-lg-2 m-b-5 text-right">
+                <div class="dados-avaliacoes dados-avaliacoes-pequeno dados-azul z-depth-1 p-t-5 p-b-5">
+                    <small>Itens subjetivos</small>
+                    <h2 class="m-0 f-400" id="total-subjetivos">0</h2>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-xs-12 col-lg-2 m-b-5 text-right">
+                <div class="dados-avaliacoes dados-avaliacoes-pequeno dados-verde z-depth-1 p-t-5 p-b-5">
+                    <small>Itens objetivos</small>
+                    <h2 class="m-0 f-400" id="total-objetivos">0</h2>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-xs-12 col-lg-2 m-b-5 text-right">
+                <div class="dados-avaliacoes dados-avaliacoes-pequeno dados-amarelo z-depth-1 p-t-5 p-b-5">
+                    <small>Itens múltipla escolha</small>
+                    <h2 class="m-0 f-400" id="total-multiplas">0</h2>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-xs-12 col-lg-3 m-b-5 text-right">
+                <div class="dados-avaliacoes dados-avaliacoes-pequeno dados-cinza z-depth-1 p-t-5 p-b-5">
+                    <small>Pontuação Máxima</small>
+                    <h2 class="m-0 f-400" id="total-pontuacao">0</h2>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="card-body droppable" id="div-listaQuestoes">
+        @Html.Hidden("questoesCounter", Model.Count())
+        @if (Model.Count() > 0)
+        {
+            int contador = 0;
+            foreach (var questao in @Model)
+            {
+
+                string nome = "linha" + contador.ToString();
+                string nomeDiv = "questao" + contador.ToString();
+
+                string nomeBtn = "btn" + contador.ToString();
+                int qtdAlternativa = 0;
+                string exigeJustificativa = "Sim";
+                string exigeResposta = "Sim";
+                string txtTipo = "Subjetiva";
+                if (questao.ExigeJustificativa == false)
+                {
+                    exigeJustificativa = "Não";
+                }
+                if (questao.ExigeResposta == false)
+                {
+                    exigeResposta = "Não";
+                }
+                if (questao.Tipo.ToString() == "ObjetivaMultiplaEscolha")
+                {
+                    txtTipo = "Múltipla escolha";
+                }
+                if (questao.Tipo.ToString() == "ObjetivaUnicaEscolha")
+                {
+                    txtTipo = "Objetiva com única escolha";
+                }
+                <div class="row  questao-pronta questao-pronta-HTML draggable" id='@nomeDiv' draggable="true">
+                    @Html.Hidden("Questoes.Index", nome)
+
+                    @Html.Hidden("Questoes[" + nome + "].Ordem", questao.Ordem, new { @id = "Questoes[" + nome + "].Ordem" })
+
+
+                    @Html.Hidden("Questoes[" + nome + "].Id", questao.Id)
+
+
+                    <div id="tituloColuna" class="col-lg-6 col-md-6 col-xs-12 ">
+                        <small class="null" style="color: black;">Titulo</small>
+                        <p class="m-0 label-questao" id="descricaoItem-@nomeDiv">
+                            @questao.Descricao
+                            @*@Html.TextBox("Questoes[" + nome + "].Descricao", questao.Descricao, new { @id = "Questoes[" + nome + "].Descricao", @class="label-questao" , @readonly = "readonly" })*@
+                            @Html.Hidden("Questoes[" + nome + "].Descricao", questao.Descricao)
+                        </p>
+                    </div>
+
+                  <!--  <div id="tituloJusticativa" class="col-lg-2 col-md-3 col-xs-4 ">
+                        <small class="null" style="color: black;">Exige justificativa?</small>
+                        <p class="m-0">
+                            @Html.TextBox("txtExigeJustificativa", exigeJustificativa, new { @id = "txtExigeJustificativa", @class = "label-questao", @readonly = "readonly" })
+                            @Html.Hidden("Questoes[" + nome + "].ExigeJustificativa", questao.ExigeJustificativa)
+                        </p>
+                    </div>-->
+
+                    <div id="tituloResposta" class="col-lg-2 col-md-3 col-xs-4 ">
+                        <small class="null" style="color: black;">Exige resposta?</small>
+                        <p class="m-0">
+                            @Html.TextBox("txtExigeResposta", exigeResposta, new { @id = "txtExigeResposta", @class = "label-questao", @readonly = "readonly" })
+                            @Html.Hidden("Questoes[" + nome + "].ExigeResposta", questao.ExigeResposta)
+                        </p>
+                    </div>
+
+                    <div id="tituloTipo" class="col-lg-2 col-md-3 col-xs-4 ">
+                        <small class="null" style="color: black;">Tipo de item</small>
+
+                        @switch (Convert.ToString(questao.Tipo))
+                        {
+                            case "Subjetiva":
+                                <p class="m-0 subjetivo">
+                                    @Html.TextBox("txtTipo", "Subjetivo", new { @style = "color:#2196f3", @class = "label-questao", @id = "txtTipo", @readonly = "readonly" })
+                                    @Html.Hidden("Questoes[" + nome + "].Tipo", questao.Tipo)
+                                </p>
+                                break;
+                            case "ObjetivaUnicaEscolha":
+
+                                <p class="m-0 objetivo">
+                                    @Html.TextBox("txtTipo", "Objetivo", new { @style = "color:#1B5E20", @class = "label-questao", @id = "txtTipo", @readonly = "readonly" })
+                                    @Html.Hidden("Questoes[" + nome + "].Tipo", questao.Tipo)
+                                </p>
+                                break;
+                            case "ObjetivaMultiplaEscolha":
+                                <p class="m-0 multipla-escolha">
+                                    @Html.TextBox("txtTipo", txtTipo, new { @style = "color:#FF9800", @class = "label-questao", @id = "txtTipo", @readonly = "readonly" })
+                                    @Html.Hidden("Questoes[" + nome + "].Tipo", questao.Tipo)
+                                </p>
+                                break;
+                        }
+                    </div>
+
+
+
+			       
+
+                    <div id="excluiritem" class="col-lg-2 col-md-12 col-xs-2 text-right">
+                         <button type="button" class="btn btn-success btn-xs text-right m-0  m-r-5 " id=@nomeDiv name="null" onclick="editarQuestao('@nomeDiv');">Editar</button>
+
+			        	<button type="button" class="btn btn-danger btn-xs text-right m-0" id=@nomeDiv name="null" onclick="excluirQuestao('@nomeDiv');">Excluir</button>
+                    
+        				
+			        </div>
+
+
+                    @{var idListaAlternativas = "listasAlternativas" + nomeDiv; }
+                    <div id=@idListaAlternativas class="col-xs-12 ">
+                        @if (Convert.ToString(questao.Tipo) != "Subjetiva")
+                        {
+                            <h6 class="m-b-0" style="color: black;">Lista de Alternativas</h6>
+                            <div id="AlternativaDescricao" class="col-lg-6 col-xs-6 p-l-0 ">
+                                <small style="color: black;">Descricao</small>
+                            </div>
+
+                            <div id="AlternativaPeso" class="col-lg-2 col-xs-2 ">
+                                <small class="null" style="color: black;">Peso</small>
+                            </div>
+
+                            <div id="AlternativaNaoConforme" class="col-lg-2 col-xs-4">
+                                <small class="null" style="color: black;">Não conforme?</small>
+                            </div>
+				            <div id="AlternativaJustificativa" class="col-lg-2 col-xs-2 ">
+                                <small class="null" style="color: black;">Exige justificativa?</small>
+                            </div>
+                        }
+
+
+                        @foreach (var alternativa in questao.Alternativas)
+                        {
+                            string naoConformidade = "Sim";
+                            string index = (qtdAlternativa + 1) + ".";
+                            if (alternativa.NaoConformidade == false)
+                            {
+                                naoConformidade = "Não";
+                            }
+
+
+                            @Html.Hidden("Questoes[" + nome + "].Alternativas[" + qtdAlternativa + "].Ordem", alternativa.Ordem, new { @id = "Questoes[" + nome + "].Alternativas[" + qtdAlternativa + "].Ordem" })
+
+                            <div id="AlternativaDescricao" class="col-lg-6 col-xs-6 p-l-0 alternativaDescricao">
+                                @Html.Hidden("Questoes[" + nome + "].Alternativas[" + qtdAlternativa + "].Id", alternativa.Id, new { @id = "Questoes[" + nome + "].Alternativas[" + qtdAlternativa + "].Id" })
+                                <p class="m-0 label-questao">
+                                    @index @alternativa.Descricao
+                                    @*@Html.TextBox("Questoes[" + nome + "].Alternativas[" + qtdAlternativa + "].Descricao", alternativa.Descricao, new {@class="label-questao" , @id = "Questoes[" + nome + "].Alternativas[" + qtdAlternativa + "].Descricao", @readonly = "readonly" })*@
+                                    @Html.Hidden("Questoes[" + nome + "].Alternativas[" + qtdAlternativa + "].Descricao", alternativa.Descricao)
+                                </p>
+
+                            </div>
+
+                            <div id="AlternativaPeso" class="col-lg-2 col-xs-2 pesoDiv">
+                                <p class="m-0 alternativa-peso-HTML">@Html.TextBox("Questoes[" + nome + "].Alternativas[" + qtdAlternativa + "].Peso", alternativa.Peso, new { @class = "label-questao", @id = "Questoes[" + nome + "].Alternativas[" + qtdAlternativa + "].Peso", @readonly = "readonly" })</p>
+                            </div>
+
+
+                            <div id="AlternativaNaoConforme" class="col-lg-2 col-xs-4">
+                                <p class="m-0">
+                                    @Html.TextBox("txtNaoConformidade", naoConformidade, new { @class = "label-questao", @id = "txtNaoConformidade", @readonly = "readonly" })
+                                    @Html.Hidden("Questoes[" + nome + "].Alternativas[" + qtdAlternativa + "].NaoConformidade", alternativa.NaoConformidade)
+                                </p>
+                            </div>
+
+				             <div id="AlternativaJustificativa" class="col-lg-2 col-xs-4">
+                                <p class="m-0">
+                                    @Html.TextBox("txtExigeJustificativa", exigeJustificativa, new { @class = "label-questao", @id = "txtExigeJustificativa", @readonly = "readonly" })
+                                    @Html.Hidden("Questoes[" + nome + "].Alternativas[" + qtdAlternativa + "].ExigeJustificativa", alternativa.ExigeJustificativa)
+                                </p>
+                            </div>
+				
+                            qtdAlternativa++;
+                        }
+                    </div>
+                </div>
+
+                                contador++;
+                            }
+
+
+                        }
+    </div>
+</div>
+
+
+
+
+
+<!-- EDITAR QUESTAO MODAL -->
+ <div class="modal fade" id="myModalEditarItem" tabindex="-1" role="dialog">
+  <div class="modal-dialog  modal-primary modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Editar item do formulário</h4>
+      </div>
+      <div class="modal-body row m-l-0 m-r-0 p-l-10 p-r-10" id="myModalBodyEditarItem">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="salvarItemFormulario" onclick="salvarEdicoes()">Salvar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+    function ordenarQuestoes() {
+        var questoes = document.getElementById("div-listaQuestoes");
+        var valorOrdem = 0;
+        for (var i = 0; i < questoes.childNodes.length; i++) {
+            if ($(questoes.childNodes[i]).hasClass("questao-pronta")) {
+                var id = questoes.childNodes[i].id;
+                var lastChar = id.substr(id.length - 1);
+                document.getElementById('Questoes[linha' + lastChar + '].Ordem').value = valorOrdem;
+                ordenarAlternativas(lastChar);
+                valorOrdem++;
+            }
+        }
+    }
+
+    function ordenarAlternativas(questaoID) {
+        var tipoQuestao = document.getElementById('Questoes_linha' + questaoID + '__Tipo').value;
+        if (tipoQuestao != "Subjetiva") {
+            var alternativas = document.getElementById('listasAlternativasquestao' + questaoID);
+            var ordemAlternativa = 0;
+            for (var j = 0; j < alternativas.childNodes.length; j++) {
+                if ($(alternativas.childNodes[j]).hasClass("alternativaDescricao")) {
+                    var alternativaID = 'Questoes[linha' + questaoID + '].Alternativas[' + ordemAlternativa + '].Ordem';
+                    document.getElementById(alternativaID).value = ordemAlternativa;
+                    ordemAlternativa++;
+                }
+            }
+        }
+    }
+</script>
+
+<script type="text/javascript" src="~/Scripts/Custom/formulario/questao.js"></script>
+<script type="text/javascript" src="~/Scripts/Custom/formulario/editarFormulario.js"></script>
+<script type="text/javascript" src="~/Scripts/Custom/formulario/editarAlternativas.js"></script>
+<script type="text/javascript" src="~/Scripts/Custom/listadinamica.js"></script>
+<script type="text/javascript" src="~/Scripts/Custom/formulario/questionariovalidacoes.js"></script>

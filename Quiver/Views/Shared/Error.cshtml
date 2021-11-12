@@ -1,0 +1,72 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/img/favicon.jpg" rel="shortcut icon" type="image/x-icon" />
+    <title>@ViewBag.Title</title>
+
+
+    @Styles.Render("~/Style/template")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/template/app.min.1.css" rel="stylesheet">
+    <link href="~/Content/template/app.min.2.css" rel="stylesheet">
+
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+
+  
+
+    <section id="main">
+
+        <section id="content">
+            <div class="container">
+                @RenderSection("featured", required: false)
+                <section class="content-wrapper main-content clear-fix">
+                    @RenderBody()
+                </section>
+            </div>
+        </section>
+    </section>
+
+    <footer id="footer">
+        <div class="content-wrapper">
+            <div class="float-left">
+                <a href="http://www.helloworldsoft.com" target="_blank">
+                    <img src="~/Content/img/marcafundo.png" style="max-height:35px">
+                </a> <p>&copy; @DateTime.Now.Year - Hello World Softwares </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <div id="modalChangePassword"></div>
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/bundles/template")
+
+    @Scripts.Render("~/bundles/flotCharts")
+    @Scripts.Render("~/bundles/charts")
+
+    @Scripts.Render("~/bundles/signalR")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

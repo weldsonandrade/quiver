@@ -1,0 +1,183 @@
+﻿@model Quiver.Models.UsuarioPerfilVM
+
+@{
+    ViewBag.Title = "Perfil do Usuário - Quiver";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    @*<input id="empresaId" type="hidden" value="@ViewBag.EmpresaId" />*@
+    <div class="row ">
+        <div class="col-xs-8 ">
+            <h1 class="titulo-opcao">
+                <i class="zmdi zmdi-account"></i> Perfil do Usuário
+            </h1>
+        </div>
+        <div class="col-xs-4 text-right">
+            <ol class="breadcrumb" style="border-bottom:none;margin-bottom:0;padding:20px 20px 20px 0;">
+                @*  <li>@Html.ActionLink("Dashboard", "Index", "Home")</li> *@
+                <li>@Html.ActionLink("Lista de Usuários", "Index", "Usuario")</li>
+                <li>@Html.ActionLink("Perfil do Usuário", "Index", "Usuario")</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<div id="modal"></div>
+
+<section class="content row">
+    @Html.HiddenFor(m => @m.Id)
+
+    @*DADOS GERAIS DO PERFIL *@
+    <div class="col-lg-6">
+        <div class="card">
+
+            <div class="card-header">
+                <h2> Dados do usuário</h2>
+            </div>
+            <div class="card-body card-padding row p-t-0" style="padding-bottom: 42px;">
+
+                <div class="col-md-6">
+                    <small> Nome do Usuário</small>
+                    @if (@Model.Nome == null)
+                    {
+                        <h5 class="m-0 c-red">Usuário não possue nome</h5>
+                    }
+                    else
+                    {
+                        <h5 class="m-0 ">@Model.Nome</h5>
+                    }
+                </div>
+                <div class="col-md-6">
+                    <small> Email do inspetor</small>
+                    <h5 class="m-0"> @Model.Login</h5>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @*FILTROS DE PESQUISA*@
+    <div class="col-lg-6">
+        <div class="card ">
+
+            <div class="card-header">
+                <h2>Filtro para pesquisar</h2>
+            </div>
+            <div class="card-body card-padding row p-b-0" id="filtros-data">
+
+                <div class="col-md-5">
+                    <small>Data Inicial</small>
+                    <div class="input-group form-group perfil-data">
+                        <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                        <div class="dtp-container fg-line">
+                            <input type="text" id="dataInicial" class="form-control date-picker">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <small>Data Final</small>
+                    <div class="input-group form-group">
+                        <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                        <div class="dtp-container fg-line">
+                            <input type="text" id="dataFinal" class="form-control date-picker">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2 row p-t-10">
+                    <button type="button" onclick="filtrar()" class="btn btn-primary btn-sm  m-t-10 waves-effect">Pesquisar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @* HISTÓRICO DE INSPEÇÕES *@
+    <div class="col-md-12">
+        <div class="card" id="card-historico">
+            <div class="card-header">
+                <h4>Histórico de inspeções</h4>
+            </div>
+
+            @* Apenas um desses ficará visível no momento em que a consulta estiver realizada *@
+            <div class="card-body card-padding" id="tabela-sem-avaliacoes" style="display:none">
+                <div class="alert alert-danger" role="alert">
+                    <h2><i class="zmdi zmdi-file-text"></i> Nenhuma inspeção referente a este usuário.</h2>
+                    <p>Não existe nenhuma inspeção em andamento, atrasada ou finalizada para esse usuário nesse período.</p>
+                </div>
+            </div>
+
+            <div class="card-body" id="tabela-avaliacoes">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-xs-12" id="grafico-efetividade">
+        <div class="card" id="card-grafico">
+            <div class="card-header">
+                <h4>
+                    Gráfico com o percentual de eficiência das inspeção finalizadas por @Model.Nome
+
+                </h4>
+            </div>
+            <div class="card-body card-padding" id="grafico-body">
+                <div id="line-chart-efetividade-perfil" class="flot-chart" style="max-width:100%;width:100%;height:400px;">
+                </div>
+            </div>
+        </div>
+        <div class="card" id="card-sem-grafico" style="display:none">
+            <div class="card-header">
+                <h4>
+                    Gráfico evolutivo de efetividade das inspeção finalizadas
+                </h4>
+            </div>
+
+            <div class="card-body card-padding">
+                <div class="alert alert-danger" role="alert">
+                    <h2><i class="zmdi zmdi-trending-up"></i> Impossível gerar gráfico evolutivo de efetifidade.</h2>
+                    <p>Para calcular a efetividade do usuário é necessário que ele finalize no mínimo uma inspeção.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-xs-12" id="grafico-qtd">
+        <div class="card" id="card-grafico-qtd">
+            <div class="card-header">
+                <h4>
+                    Gráfico com a quantidade de inspeções finalizadas por @Model.Nome
+
+                </h4>
+            </div>
+            <div class="card-body card-padding" id="grafico-body-qtd">
+                <div id="line-chart-quantidade-perfil" class="flot-chart" style="max-width:100%;width:100%;height:400px;">
+                </div>
+            </div>
+        </div>
+        <div class="card" id="card-sem-grafico-qtd" style="display:none">
+            <div class="card-header">
+                <h4>
+                    Gráfico com a quantidade de inspeções finalizadas por @Model.Nome
+                </h4>
+            </div>
+
+            <div class="card-body card-padding">
+
+                <div class="alert alert-danger" role="alert">
+                    <h2><i class="zmdi zmdi-trending-up"></i> Impossível gerar gráfico evolutivo de efetifidade.</h2>
+                    <p>Para calcular a efetividade do usuário é necessário que ele finalize no mínimo uma inspeção.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p id="alturaEixoY" style="display:none">@ViewBag.alturaEixoY</p>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/Custom/inspecao/inspecao.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/usuario/usuarioPerfil.js"></script>
+}
+

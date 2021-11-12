@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="row">
+        <div class="col-xs-8 ">
+            <h1 class="titulo-opcao">
+                <i class="zmdi zmdi-city"></i> Controle de Empresas
+            </h1>
+        </div>
+        <div class="col-xs-4 text-right ">
+            <ol class="breadcrumb" style="border-bottom:none;margin-bottom:0;padding:20px 20px 20px 0;">
+               @* <li>@Html.ActionLink("Home", "Index", "Dashboard")</li> *@
+                <li>@Html.ActionLink("Empresas", "Index", "Empresa")</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div id="modal">
+        @Html.Partial("_Manipular")
+    </div>
+    <div id="modal-usuario">
+        @Html.Partial("~/Views/Usuario/_Manipular.cshtml")
+    </div>
+    @Html.Partial("_Card")
+</section>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/Custom/empresa.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/usuario/validacoesUsuario.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/usuario/usuarios.js"></script>
+    <script type="text/javascript">
+        function onManipularUsuarioSuccess(data) {            
+            if (data.ok) {
+                $('#mensagem-erro').text('');
+                $('#mensagem-erro').css('visibility', '');
+                $('#manipularUsuarioModal').modal('hide');
+            } else {
+                $('#mensagem-erro').text(data.errorMessage);
+                $('#mensagem-erro').css('visibility', 'visible');
+                $('#mensagem-erro').css('color', 'red');
+                $('#manipularUsuarioModal').modal('show');
+            }
+        }
+    </script>
+}
+
+
+
+

@@ -1,0 +1,61 @@
+﻿<div class="card ">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>
+                    Filtros de pesquisa ao plano de ação.
+                    <small>
+
+                    </small>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body row m-l-0 m-r-0">
+        <div class="col-md-12">
+
+            @* Rótulo da inspeção *@
+            <div class="form-group fg-float col-md-4 col-lg-4 m-b-0 m-t-10" id="avaliacao-responsavel">
+                <div class="fg-line">
+                    <input type="text" name="EmailResponsavel" class="input-sm form-control fg-input" id="plano-input-email" autocomplete="off" onkeyup="validarEmail()" />
+                    <label class="fg-label">Email do responsavel</label>
+                </div>
+                <small class="help-block" id="mensagem-erro-email">Campo do tipo email.</small>
+            </div>
+
+            <div class="col-md-4 col-sm-6 m-b-0">
+                <small>Filtrar locais</small>
+                <select class="tag-select" multiple data-placeholder="Selecione os locais..." name="DDLFilterUnidade" id="DDLFilterUnidade" style="width:100%">
+                    @foreach (var unidade in (IEnumerable<SelectListItem>)ViewBag.Unidades)
+                    {
+                        <option value=@unidade.Value>@unidade.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4 col-sm-6 m-b-0">
+                <small>Filtrar usuários</small>
+                <select class="tag-select" multiple data-placeholder="Selecione os usuários..." name="DDLFilterUsuario" id="DDLFilterUsuario" style="width:100%">
+                    @foreach (var usuario in (IEnumerable<SelectListItem>)ViewBag.Usuarios)
+                    {
+                        <option value=@usuario.Value>@usuario.Text</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FILTRAR PLANO DE ACAO-->
+<div class="col-xs-12 p-r-0 p-l-0 ">
+    <button type="button" id="btnFiltrar" onclick="filtrar()" class="btn btn-primary btn-lg m-b-15 waves-effect"><i class="zmdi zmdi-rotate-right zmdi-hc-spin m-r-5" id="icon-filtrar" style="display:none"></i>Filtrar plano de ação</button>
+</div>
+
+
+
+
+
+
+

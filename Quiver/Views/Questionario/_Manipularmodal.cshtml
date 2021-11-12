@@ -1,0 +1,69 @@
+﻿@model Quiver.Models.QuestaoVM
+
+@{
+    ViewBag.Title = "Manipular";
+}
+
+<!-- Modal -->
+<div class="" id="manipularQuestionarioModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog " role="document" style="z-index: 9999999;">
+        <div class="modal-content">
+            @using (@Ajax.BeginForm("Manipular", null, new AjaxOptions() { HttpMethod = "POST", OnSuccess = "onSuccess(data)" }, new { id = "form-questionario" }))
+            {
+                @Html.ValidationSummary(true)
+
+                @Html.HiddenFor(m => @m.Id)
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Cadastro de formulário</h4>
+                </div>
+                <div class="modal-body" id="div-questionario">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                        <div class="fg-line">
+                            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", @placeholder = "Nome" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Nome)
+                    </div>
+
+                    <br />
+                    <div class="col-lg-6 col-lg-12 ">
+                        <div class="input-group form-group">
+                            <span class="input-group-addon">Responsável</span>
+                            <div class="fg-line">
+                                <div class="select">
+                                    @Html.DropDownListFor(m => m.Responsavel, (IEnumerable<SelectListItem>)ViewBag.Responsaveis, "Selecione...", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Responsavel)
+                    </div>
+
+                    <div class="col-lg-6 col-lg-12 ">
+                        <div class="input-group form-group">
+                            <span class="input-group-addon">Grupo</span>
+                            <div class="fg-line">
+                                <div class="select">
+                                    @Html.DropDownListFor(m => m.Grupo, (IEnumerable<SelectListItem>)ViewBag.Grupos, "Selecione...", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Grupo)
+                    </div>
+                    <br />
+                </div>        
+                <div id="div-quetoes">
+
+                </div>        
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="btnSalvarQuestionario" class="btn btn-primary">Salvar</button>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+
+

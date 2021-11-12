@@ -1,0 +1,107 @@
+﻿@model Quiver.Models.UnidadePerfilVM
+
+@{
+    ViewBag.Title = "Quiveer - Perfil da Unidade";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content-header">
+    <div class="row ">
+        <div class="col-xs-8 ">
+            <h1 class="titulo-opcao">
+                <i class="zmdi zmdi-account"></i> Detalhes da Unidade
+            </h1>
+        </div>
+        <div class="col-xs-4 text-right">
+            <ol class="breadcrumb" style="border-bottom:none;margin-bottom:0;padding:20px 20px 20px 0;">
+                <li>@Html.ActionLink("Dashboard", "Index", "Home")</li>
+                <li>@Html.ActionLink("Lista de unidades", "Index", "Unidade")</li>
+                <li>@Html.ActionLink("Detalhes da Unidade", "Index", "Unidade")</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+
+<section class="content row">
+
+    @Html.HiddenFor(m => @m.Id)
+
+    @*DADOS GERAIS DO PERFIL *@
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h2> Dados da unidade</h2>
+            </div>
+            <div class="card-body card-padding p-t-0" style="padding-bottom: 42px;">
+                <small> Nome da unidade</small>
+                <h5 class="m-0">@Model.Nome</h5>
+            </div>
+        </div>
+    </div>
+
+    @*FILTROS DE PESQUISA*@
+    <div class="col-lg-8">
+        <div class="card ">
+
+            <div class="card-header">
+                <h2>Filtro para pesquisar</h2>
+            </div>
+            <div class="card-body card-padding row p-b-0" id="filtros-data">
+
+                <div class="col-md-5">
+                    <small>Data Inicial</small>
+                    <div class="input-group form-group perfil-data">
+                        <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                        <div class="dtp-container fg-line">
+                            <input type="text" id="dataInicial" class="form-control date-picker">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <small>Data Final</small>
+                    <div class="input-group form-group">
+                        <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                        <div class="dtp-container fg-line">
+                            <input type="text" id="dataFinal" class="form-control date-picker">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2 row p-t-10">
+                    <button type="button" onclick="filtrar()" class="btn btn-primary btn-sm  m-t-10 waves-effect">Pesquisar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @*HISTÓRICO DE INSPEÇÕES *@
+    <div class="col-md-12">
+        <div class="card" id="card-historico">
+
+            <div class="card-header">
+                <h4>Histórico de inspeções</h4>
+            </div>
+            @*   Apenas um desses ficará visível no momento em que a consulta estiver realizada *@
+            <div class="card-body card-padding" id="tabela-sem-avaliacoes" style="display:none">
+
+                <div class="alert alert-danger" role="alert">
+                    <h2><i class="zmdi zmdi-file-text"></i> Nenhuma inspeção referente a esta unidade.</h2>
+                    <p>Não existe nenhuma inspeção em andamento, atrasada ou finalizada para esse usuário nesse período.</p>
+                </div>
+            </div>
+            <div class="card-body" id="tabela-avaliacoes">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/Custom/inspecao/inspecao.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/usuario/usuarioPerfil.js"></script>
+}
+
